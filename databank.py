@@ -1,3 +1,0 @@
-#   databank file
-
-databank = {}
