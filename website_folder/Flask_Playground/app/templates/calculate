@@ -1,1 +1,7 @@
+<html>
+    <body>
+        The result is: {{result}}
+    </body>
+</html>
 
+<!--just displays the value of the result variable that is passed to this :)-->
