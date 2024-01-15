@@ -4,11 +4,15 @@ import csv
 
 
 def extract_dzi_info(website):
+    #  a function that extracts the info we want from the dzi pages. we repeatedly call it bc every page
+    #  only has a few charities and we want the same kind of info from every page
+    
     #  create list to store charity info
     charities_dzi = []
+    # get div that contains all the charity info from the html script
     table = soup.find('div', attrs={"class": "e27posttypes e27posttypes-blocks blocks-3 bg-light"})
 
-    #  for each charity extract relevant info
+    #  for each charity extract relevant info (name, short description, link to DZI evaluation, where we get the rest of the info)
     for row in table.findAll('div',
                              attrs={'class': 'e27posttypes-block-item posttype-odaba'}):
         charity = {}
@@ -21,13 +25,13 @@ def extract_dzi_info(website):
     return charities_dzi
 
 
-#  setting the URL to scrape, getting the html info and saving it as BeautifulSoup obj
+#  setting the URL we want to get the data from
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Chrome/56.0.2924.76 Safari/537.36'}
-#  initiating URL and requests session
 URL_dzi = "https://www.dzi.de/organisation/"
 s = requests.Session()
 
+# only run if we can access the website
 try:
     r = s.get(url=URL_dzi, headers=headers)
     if r.status_code != 200:
@@ -44,10 +48,10 @@ if r:
     d = soup.find("div", class_="pagerdiv")
     for a in d.findAll("a", class_="page-numbers"):
         pages.append(a["href"])
-    #print(soup.prettify())
 
     charity_list = extract_dzi_info(soup)
 
+    #  going through all the pages of the website and extracting information
     for site in pages:
         p = s.get(url=site, headers=headers)
         new_soup = BeautifulSoup(p.content, "html5lib")
