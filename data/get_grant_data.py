@@ -1,8 +1,8 @@
 
 import os
 import pandas as pd
-import pycountry # This is used to map countries to continents later on. Needs to be installed first.
-import pycountry_convert as pc # Importantly, this needs an extra $ pip install pycountry-convert to work. It is NOT in the pycountry module initially
+import pycountry # Used to map countries to continents later on.
+import pycountry_convert as pc # Importantly, this needs an extra $ pip install pycountry-convert to work, since it is NOT in the initial pycountry module install
 
 
 # Get the relative file name for the grant_data file, provided script and datafile are stored in the same folder.
@@ -35,6 +35,7 @@ def transform_to_list(value):
 
 # Apply the transformation function to the country column.
 df_grant['Country'] = df_grant['Country'].apply(transform_to_list)
+
 
 # Create a new "Continent" column. 
 df_grant.insert(4,"Continent", "")
