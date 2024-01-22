@@ -2,7 +2,7 @@
 import os
 import pandas as pd
 import pycountry # Used to map countries to continents later on.
-import pycountry_convert as pc # Importantly, this needs an extra $ pip install pycountry-convert to work, since it is NOT in the initial pycountry module install
+import pycountry_convert as pc # Importantly, this needs an extra $ pip install pycountry-convert to work.
 
 
 # Get the relative file name for the grant_data file, provided script and datafile are stored in the same folder.
@@ -19,7 +19,6 @@ df_grant = df_grant.drop(columns_to_drop, axis='columns')
 
 # Removing duplicates (No charity should appear twice in the final list).
 df_grant.drop_duplicates(subset='Charity Name', keep='first', inplace=True)
-
 
 
 
@@ -50,9 +49,9 @@ def country_to_continent(country_name):
     country_continent_name = pc.convert_continent_code_to_continent_name(country_continent_code)
     return country_continent_name
 
-# Fill in the Continent cells with the continent that charity is active in, based on the countries they are active in. 
-#...
+# Fill in the Continent cells based on the Country they are active in.
+df_grant['Continent'] = df_grant['Country'].apply(lambda countries_list: [country_to_continent(country) for country in countries_list] if countries_list else [])
 
-
-
+# Turn the final df into an excel table. 
+df_grant.to_excel("test_CONSTANTS.xlsx")
 
