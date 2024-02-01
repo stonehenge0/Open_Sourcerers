@@ -92,7 +92,7 @@ def scrape_unique_google_doc_links(url):
             # Convert set to list.
             unique_google_doc_links_list = list(unique_google_doc_links)
 
-            #return the unique Google Doc links list.
+            # Return the unique Google Doc links list.
             return unique_google_doc_links_list
 
         else: 
@@ -107,10 +107,18 @@ df_grant['Cost-efficiency'] = df_grant['Grant Website'].apply(scrape_unique_goog
 # Kicking Google Doc links that actually lead to the same document using hashes. 
 # ...
 
+# Adding columns for Charity Evaluator, X-Crisis rating and efficiency Rating with default values. 
+df_grant.insert(6,"Evaluator", "GiveWell")
+df_grant.insert(7,"X-Crisis", "n")
+df_grant.insert(8,"Efficiency Rating", "4")
+
+# Bringing the columns in the correct order
+df_grant = df_grant.loc[:, ["Charity Name","Categories","X-Crisis","Country", "Continent","Efficiency Rating","Evaluator", "Grant Website", "Cost-efficiency" ]]
 
 
 
+print(df_grant.head())
 
 # Turn the final df into an excel table. 
-df_grant.to_excel("CONSTANTS.xlsx")
+df_grant.to_excel("ordered_CONSTANTS.xlsx")
 
