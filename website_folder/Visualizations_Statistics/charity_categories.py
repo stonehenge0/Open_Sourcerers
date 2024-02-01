@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-
 ## This plot visualizes the charity categories and how many charities we have in each section with a circular boxplot. 
 
 
@@ -61,13 +60,13 @@ bars = ax.bar(
 # little space between the bar and the label
 labelPadding = 4
 
-# Add labels
+# Add labels. 
 for bar, angle, height, label in zip(bars,angles, heights, df["Name"]):
 
     # Labels are rotated. Rotation must be specified in degrees :(
     rotation = np.rad2deg(angle)
 
-    # Flip some labels upside down
+    # Flip some labels upside down for visibility.
     alignment = ""
     if angle >= np.pi/2 and angle < 3*np.pi/2:
         alignment = "right"
@@ -75,7 +74,7 @@ for bar, angle, height, label in zip(bars,angles, heights, df["Name"]):
     else: 
         alignment = "left"
 
-    # Finally add the labels
+    # Add labels finally.
     ax.text(
         x=angle, 
         y=lowerLimit + bar.get_height() + labelPadding, 
