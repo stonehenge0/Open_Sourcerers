@@ -2,8 +2,11 @@
 <br>
 <a href="https://github.com/DenverCoder1/readme-typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Time+New+Roman&color=cyan&size=25&center=true&vCenter=true&width=900&height=100&lines=Not+sure+what+charity+to+donate+to?;++We+can+help!++;Get+to+know+more+below..."></a>
 <br>
+
 <center>
-<img src='https://github.com/stonehenge0/Open_Sourcerers/blob/main/website_folder/Apfelkuchen.jpg'>  
+<div style="width:100%;text-align:center;">
+<img src='https://github.com/stonehenge0/Open_Sourcerers/blob/main/website_folder/Apfelkuchen.jpg' width="197" height="167">  
+</div>
 </center>
 
 # ApplePy
