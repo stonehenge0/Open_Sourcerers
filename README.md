@@ -1,5 +1,10 @@
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&random=false&width=435&lines=Finding+the+right+charity+for+you.;Wanna+find+out+how%3F;Keep+on+reading...)](https://git.io/typing-svg)
-
+<br>
+<br>
+<a href="https://github.com/DenverCoder1/readme-typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Time+New+Roman&color=cyan&size=25&center=true&vCenter=true&width=900&height=100&lines=Not+sure+what+charity+to+donate+to?;++We+can+help!++;Get+to+know+more+below..."></a>
+<br>
+<center>
+<img src='https://github.com/stonehenge0/Open_Sourcerers/blob/main/website_folder/Apfelkuchen.jpg'>  
+</center>
 
 # ApplePy
 Repository for the Group Project in Programming for Data Scientists. 
