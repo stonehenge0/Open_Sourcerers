@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form action="/data" method = "POST">
+            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                <div class="w3-half">
+                <label for="answer1">Where should the charity be active?</label>
+                <select id="answer1" class="w3-select w3-border">
+                    <option value="Africa">Africa</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Australia & Oceania">Australia & Oceania</option>
+                    <option value="Europe">Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="South America">South America</option>
+                </select>
+                </div>
+                <input type="submit" value="Calculate"> <!--this is the submit button-->
+            </div>
+            
+        </form>
+    </body>
+</html>
+    
+
+<form>
+    <fieldset>
+      <legend>Please select your preferred contact method:</legend>
+      <div>
+        <input type="radio" id="contactChoice1" name="contact" value="email" />
+        <label for="contactChoice1">Email</label>
+        <input type="radio" id="contactChoice2" name="contact" value="phone" />
+        <label for="contactChoice2">Phone</label>
+        <input type="radio" id="contactChoice3" name="contact" value="mail" />
+        <label for="contactChoice3">Mail</label>
+      </div>
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </fieldset>
+  </form>
+  <pre id="log"></pre>
+  
