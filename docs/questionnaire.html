@@ -52,14 +52,14 @@
   </div>
 
   <!-- Questionnaire Section -->
-<form action="{{ url_for('submit_questionnaire')}}" method="post" class="w3-container w3-padding-32" id="questionnaire">
+<form action="{{ url_for('submit_questionnaire') }}" method="post" class="w3-container w3-padding-32" id="questionnaire">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Questionnaire</h3>
   
     <!-- Question 1 -->
     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
       <div class="w3-half">
         <label for="answer1">Where should the charity be active?</label>
-        <select id="answer1" class="w3-select w3-border">
+        <select name="answer1" id="answer1-selection" class="w3-select w3-border">
           <option value="Africa">Africa</option>
           <option value="Asia">Asia</option>
           <option value="Australia & Oceania">Australia & Oceania</option>
@@ -74,7 +74,7 @@
     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
       <div class="w3-half">
         <label for="answer2">What type of charity would you like to donate to?</label>
-        <select id="answer2" class="w3-select w3-border">
+        <select name="answer2" id="answer2-selection" class="w3-select w3-border">
           <option value="friend">Friend</option>
           <option value="search">Search Engine</option>
           <option value="social">Social Media</option>
@@ -87,7 +87,7 @@
     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
       <div class="w3-half">
         <label for="answer3">How important is efficiency to you?</label>
-        <select id="answer3" class="w3-select w3-border">
+        <select name="answer3" id="answer3-selection" class="w3-select w3-border">
           <option value="friend">Friend</option>
           <option value="search">Search Engine</option>
           <option value="social">Social Media</option>
@@ -105,7 +105,7 @@
     </div>
   
     <button type="submit" onclick="submitAnswers()" class="w3-button w3-black w3-section">
-      <i class="fa fa-paper-plane"></i> Submit Answers
+      <i class="fa fa-paper-plane">Submit Answers</i> 
     </button>
   </div>
   
