@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, flash
  
-app = Flask(__name__, template_folder='docs')
+app = Flask(__name__, static_folder='docs/static', template_folder='docs')
  
 @app.route('/')
 def form():
