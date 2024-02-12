@@ -4,7 +4,7 @@
 <title>ApplePy Questionnaire</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="Architect_stylesheet_W3.css">
+<link rel="stylesheet" href="static/Architect_stylesheet_W3.css">
 <style>
   /* Add your custom styles here */
   .questionnaire-container {
@@ -35,7 +35,7 @@
 
 <!-- Header -->
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="helping_hands.png" alt="hands reaching in the air" width="1500" height="800" title="Image by Freepik: https://www.freepik.com/free-vector/love-hands_783704.htm#query=donation&position=7&from_view=search&track=sph&uuid=e9f82470-2023-4264-91ea-6eb74a19287e">
+  <img class="w3-image" src="static/helping_hands.png" alt="hands reaching in the air" width="1500" height="800" title="Image by Freepik: https://www.freepik.com/free-vector/love-hands_783704.htm#query=donation&position=7&from_view=search&track=sph&uuid=e9f82470-2023-4264-91ea-6eb74a19287e">
   <div class="w3-display-middle w3-margin-top w3-center">
     <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>ApplePy</b></span> <span class="w3-hide-small w3-text-dark-grey">Questionnaire</span></h1>
   </div>
@@ -52,7 +52,7 @@
   </div>
 
   <!-- Questionnaire Section -->
-<div class="w3-container w3-padding-32" id="questionnaire">
+<form action="{{ url_for('submit_questionnaire')}}" method="post" class="w3-container w3-padding-32" id="questionnaire">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Questionnaire</h3>
   
     <!-- Question 1 -->
@@ -104,7 +104,7 @@
       </div>
     </div>
   
-    <button onclick="submitAnswers()" class="w3-button w3-black w3-section">
+    <button type="submit" onclick="submitAnswers()" class="w3-button w3-black w3-section">
       <i class="fa fa-paper-plane"></i> Submit Answers
     </button>
   </div>
@@ -170,7 +170,7 @@
 
   <!-- Image of location/map -->
   <div class="w3-container">
-    <img src="people_world.jpg" class="w3-image" style="width:100%" title="Image by Freepik: https://www.freepik.com/free-vector/character-illustration-diverse-people-world_3585388.htm#query=people%20around%20the%20world&position=5&from_view=search&track=ais&uuid=1be823e1-28b7-4059-842d-dd76c3b4d1b9">
+    <img src="static/people_world.jpg" class="w3-image" style="width:100%" title="Image by Freepik: https://www.freepik.com/free-vector/character-illustration-diverse-people-world_3585388.htm#query=people%20around%20the%20world&position=5&from_view=search&track=ais&uuid=1be823e1-28b7-4059-842d-dd76c3b4d1b9">
   </div>
 
   <!-- End page content -->
