@@ -10,10 +10,10 @@
 </center>
 
 # ApplePy
-Repository for the Group Project in Programming for Data Scientists. 
+Repository for the Group Project in Programming for Data Scientists.
 
-# Data
-If you research charities to fit the categories of the original GiveWell table that Emma provided please put them in this file: "231223_ApplePy_data.ods" :)
+# Final presentation
+https://docs.google.com/presentation/d/1W9WDpjblKqI7NbVhbs1zIHmNB68DqaqjX7LX9M4YqHg/edit?usp=sharing
 
 ## GitHub pages/ Website
 [![pages-build-deployment](https://github.com/stonehenge0/Open_Sourcerers/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/stonehenge0/Open_Sourcerers/actions/workflows/pages/pages-build-deployment)
