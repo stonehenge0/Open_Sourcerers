@@ -3,8 +3,6 @@ import pandas as pd
 import re
 
 
-
-
 # Get the relative file name for the ordered_CONSTANTS file, provided script and datafile are stored in the same folder.
 script_dir = os.path.dirname(__file__)
 data_filename = "\\ordered_CONSTANTS.xlsx"
