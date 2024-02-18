@@ -5,29 +5,6 @@ import analysis
 ## constants 
 app = Flask(__name__, static_folder='docs/static', template_folder='docs')
 
-# placeholder-dicts
-result_padded = {
-        "name":'name',
-        "category_g":'General Category',
-        "category_s":'Specific Category',
-        "xcrisis":"yes or no",
-        "country":"country",
-        "continent":"continent",
-        "efficiency":1,
-        "evaluator":"Example Evaluator",
-        "link_website":"https://studentenwohnheim-forum.de/",
-        "link_cost":"https://studentenwohnheim-forum.de/spenden/",
-        "e_title" : 'Low Impact',
-        'e_text' : 'The charity evaluator found insufficient evidence or insufficient demonstrable impact on its target area leading to a lack of effectivemess data.'
-    }
-data = {
-    'answer1':'answer1',
-    'answer2':'answer2',
-    'answer3':'answer3',
-    'answer4':'answer4',
-    'answer5':'answer5',
-    'answer6':'answer6'
-}
 
 ## functions
 # add info to result
@@ -179,6 +156,23 @@ def result_to_html(data, result_padded):
 def index():
     """render the landing page/index of the website"""
     return render_template('index.html')
+
+# random charity
+@app.route('/random')
+def random():
+    """request a random charity from the database, pads it with info about the efficiency score and renders the result html"""
+    data = {
+    'a_continent':'Random Charity',
+    'a_country':'Random Charity',
+    'a_topic_g':'Random Charity',
+    'a_topic_s':'Random Charity',
+    'xcrisis':'Random Charity',
+    'efficiency':'Random Charity'
+}
+    result = analysis.produce_random()      # get a random charity from the analysis-algorithm
+    result_padded = pad_result(result)      # add info about the efficiency rating
+    result_to_html(data, result_padded)     # rewrite the result.html with the info above
+    return render_template('result.html')
 
 # questionnaire
 @app.route('/questionnaire.html')
