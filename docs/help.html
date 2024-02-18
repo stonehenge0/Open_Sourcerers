@@ -115,13 +115,45 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
       <img class="w3-image" src="static/hands.jpg" alt="hands reaching in the air" width="1500" height="800" title="Image by Tumisu: https://pixabay.com/illustrations/volunteer-hands-help-colors-2055010/">
   </div>
   <div class="w3-display-middle w3-margin-top w3-center">
-    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>ApplePy</b></span> <span class="w3-hide-small w3-text-dark-grey">Help Page</span></h1>
+    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>ApplePy</b></span> <span class="w3-hide-small w3-text-dark-grey">Help</span></h1>
   </div>
 </header>
 
 <div class="help-div">
 
   <h1 class="title_FAQ">Frequently Asked Questions</h1>
+
+  <div class="FAQ">
+    <button class="button_faq">Where did you get your data?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>We gathered data from different charity evaluators. Check out <a href="index.html#vis_Sources"> Our Sources here</a>.
+      </p>
+    </div>
+  </div>
+
+  <div class="FAQ">
+    <button class="button_faq">What do you do with my answers to the questionnaire?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>We developed an algorithm that matches your answers with the charities in our database.</p>
+    </div>
+  </div>
+
+  <div class="FAQ">
+    <button class="button_faq">Why is my favourite charity not in your database?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>We gathered data from different charity evaluators. Check out <a href="index.html#vis_Sources"> Our Sources here</a> to see which exactly. The charity evaluators probably either did not evaluate your favourite charity or it did not provide enough information about your favourite charity so that our algorithm can not match it properly.
+      </p>
+    </div>
+  </div>
 
   <div class="FAQ">
     <button class="button_faq">Why is the country I want not selectable in the questionnaire?
@@ -137,29 +169,22 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
   </div>
 
   <div class="FAQ">
-    <button class="button_faq">I found a bug, what should I do? What happend when this text becomes really long aswell?
+    <button class="button_faq">Why is the topic I want not selectable in the questionnaire?
       <i class="fa-sharp fa-solid fa-chevron-down"></i>
     </button>
 
     <div class="pannel">
-      <p>
-        Please report it to us. You can use the contact form on the main page or write to one of the members directly. Please give as much context 
-          to your problem as possible, including your operating system, when it happened and as much info on the bug itself as you can.
-      </p>
+      <p>If your favourite topic is not selectable, that means we do not have a charity in our database that works on that issue.</p>
     </div>
   </div>
 
   <div class="FAQ">
-    <button class="button_faq">Can I see your code?
+    <button class="button_faq">What is the x-crisis filter?
       <i class="fa-sharp fa-solid fa-chevron-down"></i>
     </button>
 
     <div class="pannel">
-      <p>
-        Currently: No. After the 24th of February however, we will provide a link to our GitHub repository with everything on it. 
-          This is due to our project requirements, but if until then you have any questions about the project code, feel free to write us an email. 
-          Please use the contact form provided on the main page or write to one of the member directly. 
-      </p>
+      <p>Charities that work on preventing existential crises for humanity (f.e. climate change, nuclear war) are x-crisis-charities and will be shown if you select "yes".</p>
     </div>
   </div>
 
@@ -173,10 +198,39 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         Cost-efficiency is a way to measure how much good a charity does for a set amount of money. This is important because the amount of good
           charities can do with a given amount of money can be hugely different. Cost-efficiency can take into account the spendings on administrative work,
           how much room for funding a charity has and much more. If you want to read more about cost-efficiency, you can have a look at how one of our sources, 
-          charity evaluator GiveWell, handles <a href="https://www.givewell.org/how-we-work/our-criteria/cost-effectiveness"><u>cost-efficiency</u></a>.
+          charity evaluator GiveWell, handles <a target="_blank" rel="noopener noreferrer" href="https://www.givewell.org/how-we-work/our-criteria/cost-effectiveness">cost-efficiency</a>.
       </p>
     </div>
   </div>
+
+  <div class="FAQ">
+    <button class="button_faq">I found a bug, what should I do?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>
+        Please report it to us. You can write to one of the members directly via the <a href="index.html#about">About</a> section. Please give as much context 
+          to your problem as possible, including your operating system, when it happened and as much info on the bug itself as you can.
+      </p>
+    </div>
+  </div>
+
+  <div class="FAQ">
+    <button class="button_faq">Can I see your code? How did you design the algorithm?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>
+        Currently: No. After the 24th of February however, we will provide a link to our GitHub repository with everything on it. 
+          This is due to our project requirements, but if until then you have any questions about the project code, feel free to write us an email. 
+          Please write to one of the members directly. 
+      </p>
+    </div>
+  </div>
+
+  
 </div>
 
 <script>

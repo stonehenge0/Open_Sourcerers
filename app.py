@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 import os
 import analysis
 
-# is this why
 ## constants 
 app = Flask(__name__, static_folder='docs/static', template_folder='docs')
 
@@ -112,7 +111,7 @@ def result_to_html(data, result_padded):
         <p>{ result_padded['e_text'] }</p>
         <p>More info on the efficiency and cost <a target="_blank" rel="noopener noreferrer" href={ result_padded['link_cost'] }>here</a></p>
         <br>
-        <p>Does { result_padded['name'] } work to prevent an existential crisis for humanity like climate change? { result_padded['xcrisis'] }</p>
+        <p>Does { result_padded['name'] } work to prevent an existential crisis for humanity (f.e. climate change, nuclear war)? { result_padded['xcrisis'] }</p>
         <br>
         <p>More info about the charity <a target="_blank" rel="noopener noreferrer" href={ result_padded['link_website'] }>here</a></p>
         <br>     
