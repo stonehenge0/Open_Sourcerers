@@ -1,3 +1,7 @@
 *.txt
 *.md
 __pycache__
+applePyVenv/
+
+
+
