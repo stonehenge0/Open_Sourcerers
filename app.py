@@ -96,7 +96,7 @@ def result_to_html(data, result_padded):
     <div class="w3-half l3 m6 w3-margin-bottom">
     <div class="w3-display-container">
         <div class="w3-display-topleft w3-black w3-padding">{ result_padded['name'] }</div>
-        <img src="static/mosquito.png" alt="Mosquito" style="width:100%" title = "Distributing low cost nets to guard against mosquito bites to prevent malaria infections.">
+        <img src="static/Apfelkuchen.jpg" alt="Mosquito" style="width:100%" title = "Distributing low cost nets to guard against mosquito bites to prevent malaria infections.">
     </div>
     </div>
     <div class="w3-half l3 m6 w3-margin-bottom">

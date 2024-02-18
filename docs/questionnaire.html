@@ -46,13 +46,14 @@
 
 <!-- Questionnaire Section -->
 <form action="{{ url_for('submit_questionnaire') }}" method="post" class="w3-container w3-padding-32" id="questionnaire">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Enter your personal preferences here</h3>
-  
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Enter your personal preferences here:</h3>
+    <p>You can select multiple options in the scrollboxes by holding CTRL while selecting</p>
+    <br>
     <!-- Question 1 Continent -->
     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
       <div class="w3-half">
         <label for="answer1">Where should the charity be active?</label>
-        <select name="a_continent" id="answer1-selection" class="w3-select w3-border">
+        <select multiple=True name="a_continent" id="answer1-selection" class="w3-select w3-border">
           <option value="Africa">Africa</option>
           <option value="Asia">Asia</option>
           <option value="Australia & Oceania">Australia & Oceania</option>
@@ -68,7 +69,7 @@
     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
       <div class="w3-half">
         <label for="answer2">In which country should the charity be active?</label>
-        <select name="a_country" id="answer2-selection" class="w3-select w3-border">
+        <select multiple=True name="a_country" id="answer2-selection" class="w3-select w3-border">
           <option value="None">no specific</option>
           <option value="friend">No specific country</option>
           <option value="search">Search Engine</option>
@@ -82,12 +83,23 @@
     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
       <div class="w3-half">
         <label for="answer3">What should the charity work on in general?</label>
-        <select name="a_topic_g" id="answer3-selection" class="w3-select w3-border">
+        <select multiple=True name="a_topic_g" id="answer3-selection" class="w3-select w3-border">
           <option value="None"></option>
           <option value="infrastructure">infrastructure</option>
           <option value="rural areas">rural areas</option>
-          <option value="healthcare">Social Media</option>
-          <option value="other">Other</option>
+          <option value="healthcare and prevention">Healthcare and Prevention</option>
+          <option value="social services">Social Services</option>
+          <option value="hunger">Hunger</option>
+          <option value="economic development">Economic Development</option>
+          <option value="education">Education</option>
+          <option value="human rights">Human Rights</option>
+          <option value="environment and conservation">Environment and Conservation</option>
+          <option value="emergencies">Emergencies</option>
+          <option value="water">Water</option>
+          <option value="animal welfare">Animal Welfare</option>
+          <option value="climate change">Climate Change</option>
+          <option value="nuclear war">Nuclear War</option>
+          <option value="AI safety">AI Safety</option>
         </select>
       </div>
     </div>
@@ -96,12 +108,52 @@
     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
       <div class="w3-half">
         <label for="answer4">What should the charity work on more specifically?</label>
-        <select name="a_topic_s" id="answer4-selection" class="w3-select w3-border">
+        <select multiple=True name="a_topic_s" id="answer4-selection" class="w3-select w3-border">
           <option value="None"></option>
-          <option value="friend">Friend</option>
-          <option value="search">Search Engine</option>
-          <option value="social">Social Media</option>
-          <option value="other">Other</option>
+          <optgroup label="Infrastructure"></optgroup>
+          <optgroup label="Rural Areas"></optgroup>
+          <optgroup label="Healthcare and Prevention">
+            <option value="maternal and neonatal health">Maternal and Neonatal Health</option>
+            <option value="vaccinations">Vaccinations</option>
+            <option value="prevention (other)">Prevention (other)</option>
+            <option value="Malaria">Malaria</option>
+            <option value="HIV/AIDS">HIV/AIDS</option>
+            <option value="cancer treatment">Cancer Treatment</option>
+            <option value="orthopedic treatment">Orthopedic Treatment</option>
+            <option value="contraception">Contraception</option>
+            <option value="treatment (other)">Treatment (other)</option>
+            <option value="eyes">Eyes</option>
+          </optgroup>
+          <optgroup label="Social Services">
+            <option value="children, youth and family">Children, Youth and Family</option>
+            <option value="women´s empowerment">Women´s Empowerment</option>
+            <option value="refugees">Refugees</option>
+            <option value="individual support">Individual Support</option>
+            <option value="people with disabilities">People with Disabilities</option>
+            <option value="Elderly">Elderly</option>
+            <option value="criminal offenders">Criminal Offenders</option>
+            <option value="addiction">Addiction</option>
+          </optgroup>
+          <optgroup label="Hunger"></optgroup>
+          <optgroup label="Economic development">
+            <option value="farming">Farming</option>
+            <option value="worker support">Worker Support</option>
+            <option value="cash transfer and microfinances">Cash Transfer and Microfinances</option>
+          </optgroup>
+          <optgroup label="Environment and Conservation"></optgroup>
+          <optgroup label="Emergencies">
+            <option value="disaster relief">Disaster Relief</option>
+            <option value="emergency medical services">Emergency Medical Services</option>
+          </optgroup>
+          <optgroup label="Water"></optgroup>
+          <optgroup label="Animal Welfare">
+            <option value="general animal welfare">General Animal Welfare</option>
+            <option value="animal rights">Animal Rights</option>
+            <option value="nutrition and industrial livestock alternatives">Nutrition and industrial Livestock Alternatives</option>
+          </optgroup>
+          <optgroup label="Climate Change"></optgroup>
+          <optgroup label="Nuclear War"></optgroup>
+          <optgroup label="AI safety"></optgroup>
         </select>
       </div>
     </div>
