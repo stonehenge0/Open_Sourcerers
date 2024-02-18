@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import os
 import analysis
 
+# is this why
 ## constants 
 app = Flask(__name__, static_folder='docs/static', template_folder='docs')
 
