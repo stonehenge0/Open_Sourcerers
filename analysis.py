@@ -1,3 +1,5 @@
+# this is a placeholder script to test the website
+
 def produce_result():
     result = {
         "name":'Charity name Result',
