@@ -35,7 +35,7 @@
 
 <!-- Header -->
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="static/helping_hands.png" alt="hands reaching in the air" width="1500" height="800" title="Image by Freepik: https://www.freepik.com/free-vector/love-hands_783704.htm#query=donation&position=7&from_view=search&track=sph&uuid=e9f82470-2023-4264-91ea-6eb74a19287e">
+  <img class="w3-image" src="static/hands.jpg" alt="hands reaching in the air" width="1500" height="800" title="Image by Freepik: https://www.freepik.com/free-vector/love-hands_783704.htm#query=donation&position=7&from_view=search&track=sph&uuid=e9f82470-2023-4264-91ea-6eb74a19287e">
   <div class="w3-display-middle w3-margin-top w3-center">
     <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>ApplePy</b></span> <span class="w3-hide-small w3-text-dark-grey">Questionnaire</span></h1>
   </div>
@@ -74,8 +74,8 @@
     <!-- Question 2 Country-->
     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
       <div class="w3-half">
-        <label for="a_country">In which country should the charity be active?</label>
-        <select name="answer2" id="answer2-selection" class="w3-select w3-border">
+        <label for="answer2">In which country should the charity be active?</label>
+        <select name="a_country" id="answer2-selection" class="w3-select w3-border">
           <option value="friend">No specific country</option>
           <option value="search">Search Engine</option>
           <option value="social">Social Media</option>
@@ -100,8 +100,8 @@
     <!-- Question 4 topic specific-->
     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
       <div class="w3-half">
-        <label for="answer3">W?</label>
-        <select name="answer3" id="answer3-selection" class="w3-select w3-border">
+        <label for="answer4">What should the charity work on more specifically?</label>
+        <select name="a_topic_s" id="answer4-selection" class="w3-select w3-border">
           <option value="friend">Friend</option>
           <option value="search">Search Engine</option>
           <option value="social">Social Media</option>
@@ -110,75 +110,31 @@
       </div>
     </div>
 
-    <!-- Question 4 -->
+    <!-- Question 5 ex-crisis-->
     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
       <div class="w3-half">
-        <label for="answer4">On a scale of 1 to 5, how important is cost-efficiency to you?</label>
-        <input type="range" id="answer4" class="w3-input w3-border" min="1" max="5" value="3" step="1">
+        <label for="answer5">Do you want to apply the x-crisis filter?</label>
+        <select name="xcrisis" id="answer5-selection" class="w3-select w3-border">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Question 6 cost efficiency -->
+    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+      <div class="w3-half">
+        <label for="answer6">On a scale of 1 to 5, how important is cost-efficiency to you?</label>
+        <input name="efficiency" type="range" id="answer6" class="w3-input w3-border" min="1" max="5" value="3" step="1">
       </div>
     </div>
   
-    <button type="submit" onclick="submitAnswers()" class="w3-button w3-black w3-section">
+    <button type="submit" class="w3-button w3-black w3-section">
       <i class="fa fa-paper-plane">Submit Answers</i> 
     </button>
   </div>
   
-  
-    <!-- Display answered questions -->
-    <div id="answeredQuestions"></div>
-  </div>
-  
-  <script>
-    var currentQuestion = 1;
-  
-    function showNextQuestion(nextQuestionId) {
-      var currentQuestionDiv = document.getElementById('question' + currentQuestion);
-      var answeredQuestionsDiv = document.getElementById('answeredQuestions');
-  
-      // Move the current question to the answered questions section
-      answeredQuestionsDiv.appendChild(currentQuestionDiv.cloneNode(true));
-      currentQuestionDiv.style.display = 'none';
-  
-      // Show the next question
-      document.getElementById(nextQuestionId).style.display = 'block';
-      currentQuestion++;
-    }
-  
-    function submitAnswers() {
-      // Implement logic to handle submitted answers here
-      var answer1 = document.getElementById('answer1').value;
-      var answer2 = document.getElementById('answer2').value;
-      var answer3 = document.getElementById('answer3').value;
-      var answer4 = document.getElementById('answer4').value;
-  
-      // Example: Display the selected answers
-      alert('Answers submitted:\n1. ' + answer1 + '\n2. ' + answer2 +'\n3. ' + answer3 + '\n4. ' + answer4);
-    }
-  </script>
-  
-  
-  <script>
-    var currentQuestion = 1;
-  
-    function showNextQuestion(nextQuestionId) {
-      document.getElementById('question' + currentQuestion).style.display = 'none';
-      document.getElementById(nextQuestionId).style.display = 'block';
-      currentQuestion++;
-    }
-  
-    function submitAnswers() {
-      // Implement logic to handle submitted answers here
-      var answer1 = document.getElementById('answer1').value;
-      var answer2 = document.getElementById('answer2').value;
-      var answer3 = document.getElementById('answer3').value;
-      var answer4 = document.getElementById('answer4').value;
-  
-      // Example: Display the selected answers
-      alert('Answers submitted:\n1. ' + answer1 + '\n2. ' + answer2 +'\n3. ' + answer3 + '\n4. ' + answer4);
-    }
-  </script>
-  
-
+</div>
   
 
 
@@ -194,20 +150,6 @@
 <footer class="w3-center w3-black w3-padding-16">
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
-
-<!-- Script for handling questionnaire submission -->
-<script>
-    function submitAnswers() {
-        // Implement logic to handle submitted answers here
-        var answer1 = document.getElementById('answer1').value;
-        var answer2 = document.getElementById('answer2').value;
-        var answer3 = document.getElementById('answer3').value;
-        var answer4 = document.getElementById('answer4').value;
-
-        // Example: Display the selected answers
-        alert('Answers submitted:\n1. ' + answer1 + '\n2. ' + answer2 +'\n3. ' + answer3 + '\n4. ' + answer4);
-    }
-</script>
 
 </body>
 </html>
