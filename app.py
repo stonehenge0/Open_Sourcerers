@@ -9,25 +9,28 @@ app = Flask(__name__, static_folder='docs/static', template_folder='docs')
 ## functions
 # add info to result
 def pad_result(result: dict):
-    """add explanation of the efficiency score to the result-dict"""
+    """Add explanation of the efficiency score to the result-dict.
+    Input: dict with the data of the result charity
+    Output: dict with the data of the result charity AND an explanation of the efficiency score
+    """
     result_padded = result
     if result_padded['efficiency'] == 1:
         result_padded["e_title"] = 'Low Impact'
-        result_padded['e_text'] = f'''The charity evaluator { result_padded['evaluator'] } found insufficient evidence or insufficient demonstrable impact on its target area leading to a lack of effectivemess data.'''
+        result_padded['e_text'] = f'''The charity evaluator {result_padded['evaluator']} found insufficient evidence or insufficient demonstrable impact on its target area leading to a lack of effectivemess data.'''
     elif result_padded['efficiency'] == 2:
         result_padded['e_title'] = 'Exploratory'
-        result_padded['e_text'] = f'''The charity evaluator { result_padded['evaluator'] } sees potential for impact in { result_padded['name'] }. However, they need additional evidence or research for a better evaluation. This might change with a future evaluation.'''
+        result_padded['e_text'] = f'''The charity evaluator {result_padded['evaluator']} sees potential for impact in {result_padded['name']}. However, they need additional evidence or research for a better evaluation. This might change with a future evaluation.'''
     elif result_padded['efficiency'] == 3:
         result_padded['e_title'] = 'Promising Impact'
-        result_padded['e_text'] = f'''According to { result_padded['evaluator'] } { result_padded['name'] } demonstrates potential effectiveness, but does not belong to the top-rated. { result_padded['name'] } is regularly in evaluated and improved.''' 
+        result_padded['e_text'] = f'''According to {result_padded['evaluator']} {result_padded['name']} demonstrates potential effectiveness, but does not belong to the top-rated. {result_padded['name']} is regularly in evaluated and improved.''' 
     elif result_padded['efficiency'] == 4:
         result_padded['e_title'] = 'Top-rated Impact'
-        result_padded['e_text'] = f'''{ result_padded['name'] } is recognized as highly effective and impactful by { result_padded['evaluator'] }'''
+        result_padded['e_text'] = f'''{result_padded['name']} is recognized as highly effective and impactful by {result_padded['evaluator']}'''
     return result_padded
 
 # convert charity info to pretty html 
 def result_to_html(data, result_padded):
-    """rewrite the result.html with the info of the best match"""
+    """This function rewrites the html-template in RESULT_HTML with the info of the best match."""
     with open(os.path.join(os.getcwd(),'docs','result.html'), 'w') as f:        # dynamic, cross-plattform path
         data = data
         result_padded = result_padded
@@ -154,13 +157,13 @@ def result_to_html(data, result_padded):
 @app.route('/')
 @app.route('/index.html')
 def index():
-    """render the landing page/index of the website"""
+    """Renders the landing page/index of the website."""
     return render_template('index.html')
 
 # random charity
 @app.route('/random')
 def random():
-    """request a random charity from the database, pads it with info about the efficiency score and renders the result html"""
+    """Requests a random charity from the database, pads it with info about the efficiency score and renders the result html."""
     data = {
     'a_continent':'Random Charity',
     'a_country':'Random Charity',
@@ -168,7 +171,7 @@ def random():
     'a_topic_s':'Random Charity',
     'xcrisis':'Random Charity',
     'efficiency':'Random Charity'
-}
+    }
     result = analysis.produce_random()      # get a random charity from the analysis-algorithm
     result_padded = pad_result(result)      # add info about the efficiency rating
     result_to_html(data, result_padded)     # rewrite the result.html with the info above
@@ -177,12 +180,12 @@ def random():
 # questionnaire
 @app.route('/questionnaire.html')
 def questionnaire():
-    """render the questionnaire website"""
+    """Renders the questionnaire html."""
     return render_template('questionnaire.html')
 
 @app.route('/submit_questionnaire', methods = ['POST'])
 def submit_questionnaire():
-    """handle and pad the data from the questionnaire, render result website"""
+    """Handles and pads the data from the questionnaire, renders the result html."""
     if request.method == 'POST':
         data=request.form.to_dict()     # get the data from the http POST-method into a dict
         result = analysis.produce_result()      # get the result from the analysis-algorithm
@@ -192,14 +195,14 @@ def submit_questionnaire():
     
 @app.route('/try_again')
 def try_again():
-    """return to questionnaire website"""
+    """Redirects the user to the questionnaire."""
     back_to_q = app.redirect("questionnaire.html", code=302)
     return back_to_q
 
 # help page
 @app.route('/help.html')
 def help():
-    """render help website"""
+    """Renders help html."""
     return render_template('help.html')
 
 
