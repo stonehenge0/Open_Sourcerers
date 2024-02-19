@@ -42,25 +42,33 @@ Useful tools:
 * [Recordit: record your screen and save it to a GIF](http://recordit.co/)
 ---
 ## Project title
-A short description of the project’s purpose and main functionality. **What** does the project do?
+The ApplePy Charity pickers helps you find a charity to donate to. Over our website, the user can enter their preferences and we will suggest charities from our database that most closely match what they are looking for. 
 
 ## Motivation
-A short description of the project’s motivation. **Why** does the project exist, and which issues does it address?
- 
+The motivation behind this project was to combine multiple sources and extend their original functionalities to have a database of searchable, topically diverse, and cost-effective charities.
+Our sources consist of charity evaluators focusing on animal charities, charities with high cost-efficiency, longterm impact charities and a more broad evaluator. Since we sources our charities fom charity evaluators that have conducted in-depth research on their charities we ensure high quality recommendations. We also give the user the option to work with cost-efficiency scores, that measure how much positive impact a charity can have with a given sum of money. This too is information that was usually not directly available or not provided to begin with at all.    
+
 ## Features
-What makes your project stand out? Include screenshots, code snippets, logos, etc.
+- A database consisting of four different evaluators each focusing on different aspects of charitable giving. Their data has been extended to include links to the charities, geographic information, in-depth cost-effectiveness analyses and more. 
+- An algorithm to match user preferences with the charities in our database and return close matches.
+- Visualizations about our data sources and the results our algorithm produces.
+- An easy to use website, so users without coding experience can acces our functionalities.
+
 
 ## Code examples
 Include **very short code examples** that show what the project does as **concisely** as possible. Developers should be able to figure out **how** your project solves their problem by looking at the code examples. Make sure the API you are showing off is intuitive, and that your code is short and concise. See the [news-please project](https://github.com/fhamborg/news-please/blob/master/README.md#use-within-your-own-code-as-a-library) for example.
 
 ## Installation
-Provide step-by-step examples and descriptions of how to set up a development environment.
+See `requirements.txt` for a full list of requirements.
+The fastest way to install the requirements is using [pip](https://packaging.python.org/en/latest/tutorials/installing-packages/#use-pip-for-installing) and a [virtual environment](https://docs.python.org/3/tutorial/venv.html) (like [venv](https://docs.python.org/3/library/venv.html)).
+> Make sure to substitute <name_of_vev> with an actual name for your environment.
 
-## API reference
-For small projects with a simple enough API, include the reference docs in this README. For medium-sized and larger projects, provide a link to the API reference docs.
+```sh
+python3 -m venv <name_of_venv>
+source <name_of_venv>/bin/activate
+pip install -r requirements.txt
+```
 
-## Tests (optional: only if you have tests)
-Describe and show how to run the tests with code examples.
 
 ## How to use and extend the project? (maybe)
 Include a step-by-step guide that enables others to use and extend your code for their projects. Whether this section is required and whether it should be part of the `README.md` or a separate file depends on your project. If the **very short** `Code Examples` from above comprehensively cover (despite being concise!) all the major functionality of your project already, this section can be omitted. **If you think that users/developers will need more information than the brief code examples above to fully understand your code, this section is mandatory.** If your project requires significant information on code reuse, place the information into a new `.md` file.
