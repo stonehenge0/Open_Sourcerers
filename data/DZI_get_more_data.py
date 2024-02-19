@@ -20,7 +20,7 @@ run = 0
 for link in links:
     URL = link
     r = s.get(url=URL, headers=headers)
-    # If a link doesn't work, skip to the next one, but keep track of what charity we are on. 
+    # If a link doesn't work, skip to the next one, but keep track of what charity we are on.
     try:
         if r.status_code != 200:
             raise ConnectionError
@@ -33,7 +33,7 @@ for link in links:
     div_main = div_all.find("div", class_="odabamain")
     # Dictionary for storing charity data.
     cherrytea = {}
-    # Collect data on topics the charity works on (website is in german). 
+    # Collect data on topics the charity works on (website is in german).
     arbeitsschwerpunkte = div_main.find("h3", string="Arbeitsschwerpunkte")
     if arbeitsschwerpunkte:
         thema = arbeitsschwerpunkte.findNext("p")
@@ -63,7 +63,7 @@ for link in links:
         cherrytea["bureaucracy"] = str()
     '''
     recommendation_tx = div_main.find("a", href="/?p=2833")
-    # Collect data on how DZI rates the charity's effectiveness 
+    # Collect data on how DZI rates the charity's effectiveness
     # and whether it is actively endorsed (from charity description text).
     if recommendation_tx:
         cherrytea["evaluation_textbased"] = recommendation_tx.findNext("p").text.split("\n")[0]
@@ -77,13 +77,13 @@ for link in links:
         cherrytea["evaluation_tag"] = None
 
     web_site = div_all.find("strong", string="Website")
-    # Store link to charity website if availabe. 
+    # Store link to charity website if availabe.
     if web_site:
         cherrytea["website"] = web_site.findNext("a")["href"]
     else:
         cherrytea["website"] = str()
 
-    # Combine new and old data for each charity and store it in pandas.Dataframe, then save in csv file. 
+    # Combine new and old data for each charity and store it in pandas.Dataframe, then save in csv file.
     dictionary = dict(data.loc[run]) | cherrytea
     to_append = pd.DataFrame([dictionary])
     if not run:
