@@ -47,7 +47,7 @@ for site in pages:
         charity_list.append(charity_dict)
 
 #  Save the extracted charity data in csv file.
-filename = 'dzi.csv'
+filename = 'dzi_01.csv'
 with open(filename, 'w', newline='', encoding="UTF-8") as f:
     w = csv.DictWriter(f, ["name", "descript", "eval_link"])
     w.writeheader()
