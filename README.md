@@ -9,27 +9,10 @@
 </div>
 </center>
 
-# ApplePy
-Repository for the Group Project in Programming for Data Scientists.
 
 # Final presentation
 https://docs.google.com/presentation/d/1W9WDpjblKqI7NbVhbs1zIHmNB68DqaqjX7LX9M4YqHg/edit?usp=sharing
 
-
-#  How to use this file
-We ask all students working on projects and theses with us to 
-* hand in their source code and
-* provide a documentation for their project. 
-
-Source code (including the code architecture and comments) has to adhere to our [developer guidelines](https://isgroup.atlassian.net/wiki/spaces/STUD/pages/1409184/Developer+Guidelines). The project documentation consists of one or more a `README.md` files that cover the topics listed hereafter. Thus, copy this file's content to your project and use it as a template to write the documentation for your project.
-
-Aside from using this template, also check out the following sources for examples and guidelines on how to write a good `README.md` for your project. Note that the exemplary projects do not follow this template completely (either because they were created by third-parties or before we consolidated all the information into this template). They are still good examples of high-quality `README.md` files.
-* [Example: news-please](https://github.com/fhamborg/news-please/blob/master/README.md)
-* [Article: How to write a good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
-* [Article: A beginners guide to writing a good readme](https://medium.com/@meakaakka/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3)
-
-Useful tools:
-* [Recordit: record your screen and save it to a GIF](http://recordit.co/)
 ---
 ## Charity Picker
 The ApplePy Charity pickers helps you find a charity to donate to. Over our website, the user can enter their preferences and we will suggest charities from our database that most closely match what they are looking for. 
