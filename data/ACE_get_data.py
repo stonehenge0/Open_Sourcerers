@@ -36,7 +36,7 @@ if r:
         charities.append(charity)
 
 #  save the extracted info in a csv file for further use
-filename = 'animalcharities.csv'
+filename = 'ACE_data_01.csv'
 with open(filename, 'w', newline='', encoding="UTF-8") as f:
     w = csv.DictWriter(f, ["name", "topic", "eval_link"])
     w.writeheader()
