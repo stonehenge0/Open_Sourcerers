@@ -107,6 +107,17 @@ If you performed evaluations as part of your project, include your preliminary r
 
 If you are about to complete your thesis, include the most important findings (precision/recall/F1 measure) and refer to the corresponding pages in your thesis document.
 
+## Group Details
+
+Who did what?
+Emma - Group leader, data collection and cleanup for GiveWell and (the other website), website setup. 
+Paula - Website backend
+Sina - Statistical analysis
+Lena-Sinwo - Gathering data from Animalchariyevaluator.org and dzi.de, cleaning and organizing this data. 
+Florian (left the group) - 
+
+We developed the idea of the project and set up the timeline together. 
+
 ## License
 Include the project's license. Usually, we suggest MIT or Apache. Ask your supervisor. For example:
 
