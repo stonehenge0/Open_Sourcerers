@@ -5,7 +5,7 @@ import requests
 
 # Setting up the path to current state of data file. 
 script_dir = os.path.dirname(__file__)
-data_filename = "\\animalcharities.csv"
+data_filename = "\\ACE_data_01.csv"
 data_path = script_dir+data_filename
 
 data = pd.read_csv(data_path)
@@ -153,8 +153,8 @@ for link in links:
     dictionary = dict(data.loc[run]) | cherrytea
     to_append = pd.DataFrame([dictionary])
     if not run:
-        to_append.to_excel("animal_more_info.xlsx", index=False, header=True)
+        to_append.to_excel("ACE_more_info.xlsx", index=False, header=True)
     else:
-        with pd.ExcelWriter('animal_more_info.xlsx', mode='a', if_sheet_exists='overlay') as writer:
+        with pd.ExcelWriter('ACE_more_info.xlsx', mode='a', if_sheet_exists='overlay') as writer:
             to_append.to_excel(writer, index=False, header=False, startrow=run+1)
     run += 1
