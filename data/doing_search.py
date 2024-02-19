@@ -13,10 +13,27 @@ import pandas as pd
 import ast
 def main(user_continent = [1,2,3,4,5], user_country = [81,90,105], user_category = [52, 42]
          , user_x = [0], user_eff = [3]
-         , directory_of_dataset = "/content/final_cleaned_meaningful_all.csv"):
+         , directory_of_dataset = "/final_cleaned_meaningful_all.csv"):
   import numpy as np
   import pandas as pd
   import ast
+  country_levels = pd.read_csv("/country_levels.csv")
+  category_levels = pd.read_csv("/category_levels.csv")
+  continent_levels = pd.read_csv("/continent_levels.csv")
+  temp = []
+  for i in user_continent:
+    temp.append(int(continent_levels.loc[continent_levels['continent'] == i,:]['levels']))
+  user_continent = temp
+  temp = []
+  for i in user_category:
+    temp.append(int(category_levels.loc[category_levels['category'] == i,:]['meaningful_levels']))
+  user_category = temp
+  temp = []
+  for i in user_country:
+    temp.append(int(country_levels.loc[country_levels['country'] == i,:]['levels']))
+  user_country = temp
+  user_x = [int(user_x)]
+  user_eff = [int(user_eff)]
   f = pd.read_csv(directory_of_dataset)
   ##create a function as distance metric to calculate similarity between what user entered and the charities existed in the dataset
   ##first, it gives the exact mathces between user entry and dataset 5 score, then it searched over similar category feature and gave a score depeneds on similarity between user input and dataset
