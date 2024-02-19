@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
  
  
-## Plot shows  which evaluators our charities come from.
-# Assigning names and values to the charity evaluators.
+
+# Assigning names and values of the charity evaluators.
 names='GiveWell', 'Animal Charity Evaluator', 'Deutsches Zentralinstitut für soziale Fragen', "Giving What We Can"
 values=[40,19,294,5]
 
