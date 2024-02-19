@@ -9,39 +9,12 @@
 </div>
 </center>
 
-# ApplePy
-Repository for the Group Project in Programming for Data Scientists.
 
 # Final presentation
 https://docs.google.com/presentation/d/1W9WDpjblKqI7NbVhbs1zIHmNB68DqaqjX7LX9M4YqHg/edit?usp=sharing
 
-## GitHub pages/ Website
-[![pages-build-deployment](https://github.com/stonehenge0/Open_Sourcerers/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/stonehenge0/Open_Sourcerers/actions/workflows/pages/pages-build-deployment)
-
-The website is generated from the content in the `docs/` folder and reachable under the url: [https://stonehenge0.github.io/Open_Sourcerers/](https://stonehenge0.github.io/Open_Sourcerers/). 
-
-Once changes to the `docs/` folder are made, the website builds again automatically. 
-
-You can see the current build status, as well as previous builds in the `Actions` tab of the repository, or by clicking on the symbol next to where the last commit shown (shows as a little ✖️ or ✔️). Clicking the symbol and then `Details` will lead you to an overview of the current build where you can also run the build again without needing to modify the files in `docs/` by clicking on `Re-run all jobs` in the top right. 
-
-You can change the setup so that the website is generated from the root of the repository instead in `settings` > `pages`. An `index.html` file needs to be present in the root directory for the site to be displayed correctly. 
-
-#  How to use this file
-We ask all students working on projects and theses with us to 
-* hand in their source code and
-* provide a documentation for their project. 
-
-Source code (including the code architecture and comments) has to adhere to our [developer guidelines](https://isgroup.atlassian.net/wiki/spaces/STUD/pages/1409184/Developer+Guidelines). The project documentation consists of one or more a `README.md` files that cover the topics listed hereafter. Thus, copy this file's content to your project and use it as a template to write the documentation for your project.
-
-Aside from using this template, also check out the following sources for examples and guidelines on how to write a good `README.md` for your project. Note that the exemplary projects do not follow this template completely (either because they were created by third-parties or before we consolidated all the information into this template). They are still good examples of high-quality `README.md` files.
-* [Example: news-please](https://github.com/fhamborg/news-please/blob/master/README.md)
-* [Article: How to write a good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
-* [Article: A beginners guide to writing a good readme](https://medium.com/@meakaakka/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3)
-
-Useful tools:
-* [Recordit: record your screen and save it to a GIF](http://recordit.co/)
 ---
-## Project title
+## Charity Picker
 The ApplePy Charity pickers helps you find a charity to donate to. Over our website, the user can enter their preferences and we will suggest charities from our database that most closely match what they are looking for. 
 
 ## Motivation
@@ -56,7 +29,61 @@ Our sources consist of charity evaluators focusing on animal charities, charitie
 
 
 ## Code examples
-Include **very short code examples** that show what the project does as **concisely** as possible. Developers should be able to figure out **how** your project solves their problem by looking at the code examples. Make sure the API you are showing off is intuitive, and that your code is short and concise. See the [news-please project](https://github.com/fhamborg/news-please/blob/master/README.md#use-within-your-own-code-as-a-library) for example.
+We first read in the data that we have from each of our sources, in this case using webscraping with [Beautiful soup](https://pypi.org/project/beautifulsoup4/).
+
+> Note: the process of extracting, processing and scraping data varies strongly between our sources. In favour of simplicity, the data collection process will be shown at the example of ACE (Animal Charity Evaluator) here.
+
+```sh
+try:
+    r = s.get(url=URL_animals, headers=headers)
+if r:
+    soup = BeautifulSoup(r.content, "html5lib")
+    table = soup.find('div', attrs={"id": "grid"})
+    #  for each charity extract relevant data
+    for row in table.findAll('div',
+                             attrs={'class': 'card-detail-wrapper'}):
+        charity = {}
+        charity["name"] = row.h2.text
+        charity["eval_link"] = row.a["href"]
+        # ...
+```
+> Most of the code/functions here were shortened for the purpose of readability, you can find the full functions in the respective folders.
+
+
+After extracting the data, we see what the data is missing to fit in our schema: In this case ACE did not specify the continents that a charity was working on. Additionally, their effectiveness scores and categorization needed to be mapped onto ours to ensure consistency within our database to make it searchable. 
+
+```sh
+def map_to_categories(initial_categories):
+    """Function takes the initial categories (list) and maps them onto broader categories, returns string
+    returns category, if charity matches only one, then prioritizes from most to least specific
+    """
+    categories = set()
+    for lable in initial_categories:
+        if lable in topics_dict:
+            categories.add(topics_dict[lable])
+        else:
+            categories.add("other")
+    elif "nutrition and industrial livestock alternatives" in categories:
+        return "nutrition and industrial livestock alternatives"
+
+```
+**insert STATISTICAL ANALYSIS (Sina) here**
+
+We also create visualizations about our database and about the results of the user preferences and display them on the website. 
+
+
+
+## GitHub pages/ Website
+[![pages-build-deployment](https://github.com/stonehenge0/Open_Sourcerers/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/stonehenge0/Open_Sourcerers/actions/workflows/pages/pages-build-deployment)
+
+The website is generated from the content in the `docs/` folder and reachable under the url: [https://stonehenge0.github.io/Open_Sourcerers/](https://stonehenge0.github.io/Open_Sourcerers/). 
+
+Once changes to the `docs/` folder are made, the website builds again automatically. 
+
+You can see the current build status, as well as previous builds in the `Actions` tab of the repository, or by clicking on the symbol next to where the last commit shown (shows as a little ✖️ or ✔️). Clicking the symbol and then `Details` will lead you to an overview of the current build where you can also run the build again without needing to modify the files in `docs/` by clicking on `Re-run all jobs` in the top right. 
+
+You can change the setup so that the website is generated from the root of the repository instead in `settings` > `pages`. An `index.html` file needs to be present in the root directory for the site to be displayed correctly. 
+
 
 ## Installation
 See `requirements.txt` for a full list of requirements.
@@ -68,6 +95,8 @@ python3 -m venv <name_of_venv>
 source <name_of_venv>/bin/activate
 pip install -r requirements.txt
 ```
+
+
 
 
 ## How to use and extend the project? (maybe)
