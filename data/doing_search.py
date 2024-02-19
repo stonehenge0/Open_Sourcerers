@@ -13,13 +13,13 @@ import pandas as pd
 import ast
 def main(user_continent = [1,2,3,4,5], user_country = [81,90,105], user_category = [52, 42]
          , user_x = [0], user_eff = [3]
-         , directory_of_dataset = "/final_cleaned_meaningful_all.csv"):
+         , directory_of_dataset = "/data/final_cleaned_meaningful_all.csv"):
   import numpy as np
   import pandas as pd
   import ast
-  country_levels = pd.read_csv("/country_levels.csv")
-  category_levels = pd.read_csv("/category_levels.csv")
-  continent_levels = pd.read_csv("/continent_levels.csv")
+  country_levels = pd.read_csv("/data/country_levels.csv")
+  category_levels = pd.read_csv("/data/category_levels.csv")
+  continent_levels = pd.read_csv("/data/continent_levels.csv")
   temp = []
   for i in user_continent:
     temp.append(int(continent_levels.loc[continent_levels['continent'] == i,:]['levels']))
