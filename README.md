@@ -50,12 +50,12 @@ if r:
 > Most of the code/functions here were shortened for the purpose of readability, you can find the full functions in the respective folders.
 
 
-After extracting the data, we see what the data is missing to fit in our schema: In this case ACE did not specify the continents that a charity was working on. Additionally, their effectiveness scores and categorization needed to be mapped onto ours to ensure consistency within our database to make it searchable. 
+After extracting the data, we see what the data is missing to fit in our scheme: In this case ACE did not specify the continents that a charity was working on. Additionally, their effectiveness scores and categorization needed to be mapped onto ours to ensure consistency within our database to make it searchable. 
 
 ```sh
 def map_to_categories(initial_categories):
-    """Function takes the initial categories (list) and maps them onto broader categories, returns string
-    returns category, if charity matches only one, then prioritizes from most to least specific
+    """Function takes the initial categories as a list and maps them onto broader categories. Returns a string.
+    Returns the category if charity matches only one. Otherwise returns most specific category in the list. 
     """
     categories = set()
     for lable in initial_categories:
