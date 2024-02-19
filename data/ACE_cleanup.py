@@ -1,5 +1,6 @@
-import pandas as pd
 import numpy as np
+import os
+import pandas as pd
 import pycountry
 import pycountry_convert as pc
 
@@ -53,7 +54,7 @@ def str_to_list(string):
 
 
 script_dir = os.path.dirname(__file__)
-data_filename = "\\animal_more_info.xlsx"
+data_filename = "\\ACE_more_info.xlsx"
 data_path = script_dir+data_filename
 ACE_data = pd.read_excel("data_path")
 
