@@ -13,8 +13,9 @@ from bs4 import BeautifulSoup
 import pycountry_convert as pc 
 
 
-def transform_to_list(cell):
+def transform_to_list(value):
     """Transform the entries in a cell to a list, split by commata. 
+    Intended to split dataframe entries by comma to become different list entries. 
 
     Args:
         cell (str): An entry of a cell in a pandas dataframe.
@@ -23,10 +24,10 @@ def transform_to_list(cell):
         list: list of values, split by commata. Returns an empty list if the cell is empty. 
     """
     
-    if pd.isna(cell):  
+    if pd.isna(value):  
         return []  # Return an empty list for empty cells
     else:
-        return [part.strip() for part in cell.split(',')]
+        return [part.strip() for part in value.split(',')]
     
     
 def country_to_continent(country_name):
@@ -61,8 +62,8 @@ def scrape_unique_google_doc_links(url):
 
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
+        
         soup = BeautifulSoup(response.text, 'html.parser')
-
 
         links = soup.find_all('a', href=True)
             
@@ -73,7 +74,6 @@ def scrape_unique_google_doc_links(url):
                 unique_google_doc_links.append(link['href'])
 
 
-        # Return the unique Google Doc links list.
         return unique_google_doc_links
 
     else:
@@ -86,7 +86,7 @@ def scrape_unique_google_doc_links(url):
 
 ## Read in data.
 script_dir = os.path.dirname(__file__)
-data_filename = "\\grant_data.xlsx"
+data_filename = "\\GiveWell_grant_data_original.xlsx"
 data_path = script_dir+data_filename
 
 df_grant = pd.read_excel(data_path)
@@ -112,15 +112,10 @@ df_grant['Continent'] = df_grant['Country'].apply(lambda countries_list: [countr
 
 
 
-
-
 ## Webscrape Links to the cost-effectiveness sheets and writing to the "Cost-efficiency" cloumn.
-GiveWell_urls = df_grant['Grant Website'].tolist()
-
 df_grant.insert(5,"Cost-efficiency", "")
 
 df_grant['Cost-efficiency'] = df_grant['Grant Website'].apply(scrape_unique_google_doc_links)
-
 
 
 
@@ -131,12 +126,25 @@ df_grant.insert(7,"X-Crisis", "n")
 df_grant.insert(8,"Efficiency Rating", "4") # This will be modified later on. This is just to set a value there.
 
 # Order the df. 
-df_grant = df_grant.loc[:, ["Charity Name","Categories","X-Crisis","Country", "Continent","Efficiency Rating","Evaluator", "Grant Website", "Cost-efficiency" ]]
+df_grant = df_grant.loc[
+    :,
+    [
+        "Charity Name",
+        "Categories",
+        "X-Crisis",
+        "Country",
+        "Continent",
+        "Efficiency Rating",
+        "Evaluator",
+        "Grant Website",
+        "Cost-efficiency",
+    ],
+]
 
 
-# Turn the final df into an excel table. 
-df_grant.to_excel("ordered_CONSTANTS.xlsx")
+df_grant.to_excel("GiveWell_extracted_webscraped.xlsx")
 
-print(df_grant.head())
+# Optional: inspect the head of the dataframe. 
+# print(df_grant.head())
 
 
