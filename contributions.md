@@ -1,9 +1,34 @@
-Please enter who did what here. Be specific with what exactly you did, see below for an example: 
+An overview of who did what during the project.
 
 **Emma:**
-- `data/get_grant_data.py`
-- `docs/index.html` sections A, B and C
-- ...
+- `data/GiveWell_webscraped_extracted.py`  (previously called "get_grant_data") 
+- `data/GiveWell_get_cost_effectiveness_links.py`
+- `data/GiveWell_cleanup.py`
+- `data/GiveWell_with_final_ce_links.xlsx`
+- `data/GiveWell_almost_finished.xlsx`
+- `data/final_GiveWell_and_GWWC.xlsx`
+<br>
+
+- `docs/index.html` sections: Example charities, About, Visualizations generated (Paula put them online), general layout and pictures.
+- `docs/help.html` general layout and wrote half of the questions.  
+<br>
+
+- `docs/charity_categories.py`
+- `docs/distribution_charity_sources.py`
+<br>
+
+- Hosting of the website
+- General Layout of the Website
+- `README.md` sections: Charity Picker, Motivation, Features, Code Examples, GitHub Pages/Website, Installation
+- Virtual environment (`requirements.txt`)
+<br>
+ 
+- research charity evaluators for sources
+- Cost-effectiveness Guidelines
+- first draft of categories with Paula 
+- Adding & researching existential risk (X-risk) charities
+
+ --- 
 
 **Paula**
 - first version of `data/get_grant_data.py`
