@@ -68,6 +68,7 @@ def map_to_categories(initial_categories):
 
 ```
 **STATISTICAL ANALYSIS**
+
 How does our algorithm determine what charity to recommend?
 
 All features were categorized using their corresponding dictionary that assigns each feature an interpretable category level. For instance, in topic feature we have main topics and sub topics which are part of the their related main topic. here, we assign each main topic a numeric level and assign the sub topics of the main topic a numeric level that inreases for each sun topic by step of 1. then, we reached the last sub topic of the main topic, a numerical level + 5 were assigned to the next main topic and this process went on until reaching the last sub category or main category.
@@ -76,6 +77,11 @@ categ_category = []
 for i in d['category']:
   categ_category.append([category_levels[x] for x in i])
 ```
+
+Attempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11
+--- | --- | --- | --- |--- |--- |--- |--- |--- |--- |--- |---
+Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269
+
 When you (the user) set your preferences in our questionaire our algorithm assigns a value to each of your inputs, as shown for the 'continent' category. 
 ```sh
 temp = []
