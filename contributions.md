@@ -17,7 +17,7 @@ An overview of who did what during the project.
 - `docs/distribution_charity_sources.py`
 <br>
 
-- Hosting of the website (without Python functionality)
+- Hosting of the website
 - General Layout of the Website
 - `README.md` sections: Charity Picker, Motivation, Features, Code Examples, GitHub Pages/Website, Installation
 - Virtual environment (`requirements.txt`)

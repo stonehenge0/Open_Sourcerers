@@ -50,12 +50,12 @@ if r:
 > Most of the code/functions here were shortened for the purpose of readability, you can find the full functions in the respective folders.
 
 
-After extracting the data, we see what the data is missing to fit in our scheme: In this case ACE did not specify the continents that a charity was working on. Additionally, their effectiveness scores and categorization needed to be mapped onto ours to ensure consistency within our database to make it searchable. 
+After extracting the data, we see what the data is missing to fit in our schema: In this case ACE did not specify the continents that a charity was working on. Additionally, their effectiveness scores and categorization needed to be mapped onto ours to ensure consistency within our database to make it searchable. 
 
 ```sh
 def map_to_categories(initial_categories):
-    """Function takes the initial categories as a list and maps them onto broader categories. Returns a string.
-    Returns the category if charity matches only one. Otherwise returns most specific category in the list. 
+    """Function takes the initial categories (list) and maps them onto broader categories, returns string
+    returns category, if charity matches only one, then prioritizes from most to least specific
     """
     categories = set()
     for lable in initial_categories:
@@ -73,7 +73,7 @@ We also create visualizations about our database and about the results of the us
 
 
 
-## GitHub pages
+## GitHub pages/ Website
 [![pages-build-deployment](https://github.com/stonehenge0/Open_Sourcerers/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/stonehenge0/Open_Sourcerers/actions/workflows/pages/pages-build-deployment)
 
 The website is generated from the content in the `docs/` folder and reachable under the url: [https://stonehenge0.github.io/Open_Sourcerers/](https://stonehenge0.github.io/Open_Sourcerers/). 
@@ -84,10 +84,6 @@ You can see the current build status, as well as previous builds in the `Actions
 
 You can change the setup so that the website is generated from the root of the repository instead in `settings` > `pages`. An `index.html` file needs to be present in the root directory for the site to be displayed correctly. 
 
-## Website with Python functionality
-We are running our website on localhost.
-I you want to host our website and have the Questionnaire-functions online, you need to create a WSGI-server. Please refer to the Flask Documentation "Deploying to production" for further information: https://flask.palletsprojects.com/en/2.3.x/deploying/
-Please note that due to the size of the modules in our requirements.txt a free pythonanywhere-server is too small.
 
 ## Installation
 See `requirements.txt` for a full list of requirements.
@@ -99,32 +95,17 @@ python3 -m venv <name_of_venv>
 source <name_of_venv>/bin/activate
 pip install -r requirements.txt
 ```
-If you want to host our website and have the Questionnaire-functions online, you need to create a WSGI-server. Please refer to the Flask Documentation "Deploying to production" for further information: https://flask.palletsprojects.com/en/2.3.x/deploying/
-Please note that due to the size of the modules in our requirements.txt a free pythonanywhere-server is too small.
 
-If your server is set up, execute "app.py" and open your url. You should now have full functionality.
+
 
 
 ## How to use and extend the project? (maybe)
-The different .py skripts in the 'data' folder all work together to collect and clean the data from the four different charity evaluators we used. It also includs excel spreadsheets of our final version of the collected data (final_XX.xlsx), that can easily be downloaded to use the statistical skripts on the data. To recreate the sheets the user would have to run the different skripts for each Website in order (e.g. XX_get_data.py, XX_get_more_data.py, cleanup_XX.py). One way to extend the project would be to gather more data on charities, for example from other charity evaluators. The data used for the statistical analysis is formatted to an excel table with headings "name", "category", "x-crisis", "country", "continent", "efficiency", "evaluator" and "website" and modify the statistical analysis code to include the new data. 
-
-The website runs via "app.py". As Flask handles the communication between backend and frontend an WSGI-server is required. See above for more details on installation.
-If you want to add further html-pages, remember to create a new route in app.py and reference the new page on existing html-pages (via single button reference like our submit-questionnaire button or via the menu on all pages). You could also use our website with a different dataset. For this you have to edit the contents of the html-pages and update the @app.route('/submit_questionnaire') part in app.py to call your own functions OR update doing_search.py to load your spreadsheet as dataframe.
-
---- explain in more detail?
-
 Include a step-by-step guide that enables others to use and extend your code for their projects. Whether this section is required and whether it should be part of the `README.md` or a separate file depends on your project. If the **very short** `Code Examples` from above comprehensively cover (despite being concise!) all the major functionality of your project already, this section can be omitted. **If you think that users/developers will need more information than the brief code examples above to fully understand your code, this section is mandatory.** If your project requires significant information on code reuse, place the information into a new `.md` file.
 
-## Group Details
+## Results
+If you performed evaluations as part of your project, include your preliminary results that you also show in your final project presentation, e.g., precision, recall, F1 measure and/or figures highlighting what your project does. If applicable, briefly describe the dataset your created or used first before presenting the evaluated use cases and the results.
 
-Who did what?
-Emma - Group leader, data collection and cleanup for GiveWell and (the other website), website setup. 
-Paula - Website backend and content of the frontend (not the layout)
-Sina - Statistical analysis
-Lena-Sinwo - Gathering data from Animalchariyevaluator.org and dzi.de, cleaning and organizing this data. 
-Florian (left the group) - 
-
-We developed the idea of the project and set up the timeline together. 
+If you are about to complete your thesis, include the most important findings (precision/recall/F1 measure) and refer to the corresponding pages in your thesis document.
 
 ## License
 Include the project's license. Usually, we suggest MIT or Apache. Ask your supervisor. For example:

@@ -11,29 +11,51 @@ Original file is located at
 import numpy as np
 import pandas as pd
 import ast
-def main(user_continent = [1,2,3,4,5], user_country = [81,90,105], user_category = [52, 42]
-         , user_x = [0], user_eff = [3]
-         , directory_of_dataset = "final_cleaned_meaningful_all.csv"):
+import os
+from io import BytesIO
+import base64
+import matplotlib.pyplot as plt
+def main(user_continent, user_country, user_category
+         , user_x, user_eff
+         , directory_of_dataset = os.path.join(os.getcwd(),"data/final_cleaned_meaningful_all.csv")):
   import numpy as np
   import pandas as pd
   import ast
-  country_levels = pd.read_csv("country_levels.csv")
-  category_levels = pd.read_csv("category_levels.csv")
-  continent_levels = pd.read_csv("continent_levels.csv")
+  import os
+  from io import BytesIO
+  import base64
+  import matplotlib.pyplot as plt
+  country_levels = pd.read_csv(os.path.join(os.getcwd(),"data/country_levels.csv"))
+  category_levels = pd.read_csv(os.path.join(os.getcwd(),"data/category_levels.csv"))
+  continent_levels = pd.read_csv(os.path.join(os.getcwd(),"data/continent_levels.csv"))
   temp = []
+  print(1)
   for i in user_continent:
     temp.append(int(continent_levels.loc[continent_levels['continent'] == i,:]['levels']))
   user_continent = temp
   temp = []
+  print(2)
   for i in user_category:
-    temp.append(int(category_levels.loc[category_levels['category'] == i,:]['meaningful_levels']))
+    try:
+      temp.append(int(category_levels.loc[category_levels['category'] == i,:]['meaningful_levels']))
+    except Exception:
+      continue
   user_category = temp
   temp = []
+  print(3)
   for i in user_country:
-    temp.append(int(country_levels.loc[country_levels['country'] == i,:]['levels']))
+    try:
+      temp.append(int(country_levels.loc[country_levels['country'] == i,:]['levels']))
+    except Exception:
+      continue
   user_country = temp
-  user_x = [int(user_x)]
-  user_eff = [int(user_eff)]
+  print(4)
+  if user_x == 'no':
+    user_x = [0]
+  else:
+    user_x = [1]
+  print(5)
+  #user_eff = [int(user_eff)]
   f = pd.read_csv(directory_of_dataset)
   ##create a function as distance metric to calculate similarity between what user entered and the charities existed in the dataset
   ##first, it gives the exact mathces between user entry and dataset 5 score, then it searched over similar category feature and gave a score depeneds on similarity between user input and dataset
@@ -119,26 +141,60 @@ def main(user_continent = [1,2,3,4,5], user_country = [81,90,105], user_category
     emp_dic_1[k] = i
     k = k + 1
   sorted_dic_1 = dict(sorted(emp_dic_1.items(), key=lambda x:x[1] , reverse= True))
+  flag = 0
   if len(sorted_dic_1) >= 3:
     names = [g.iloc[int(x),1] for x in list(sorted_dic_1.keys())[0:3]]
     counts = list(sorted_dic_1.values())[0:3]
     ins1 = f.iloc[list(sorted_dic_1.keys())[0],:].to_dict()
     ins2 = f.iloc[list(sorted_dic_1.keys())[1],:].to_dict()
     ins3 = f.iloc[list(sorted_dic_1.keys())[2],:].to_dict()
+    if 'global' in ast.literal_eval(ins1['country']):
+      ins1['continent'] = 'all'  
+    if 'global' in ast.literal_eval(ins2['country']):
+      ins2['continent'] = 'all'    
+    if 'global' in ast.literal_eval(ins3['country']):
+      ins3['continent'] = 'all'      
+
+    if len(ast.literal_eval(ins1['country'])) == 0:
+      ins1['country'] = 'almost all countries'
+    if len(ast.literal_eval(ins2['country'])) == 0:
+      ins2['country'] = 'almost all countries'
+    if len(ast.literal_eval(ins3['country'])) == 0:
+      ins3['country'] = 'almost all countries'
     results = {'result1' : ins1, 'result2' : ins2, 'result3' : ins3}
+    flag = 1
   else:
-    name = [f.iloc[int(x),1] for x in list(sorted_dic.keys())[0:3]]
+    names = [f.iloc[int(x),1] for x in list(sorted_dic.keys())[0:3]]
     counts = list(sorted_dic.values())[0:3]
     ins1 = f.iloc[list(sorted_dic.keys())[0],:].to_dict()
     ins2 = f.iloc[list(sorted_dic.keys())[1],:].to_dict()
     ins3 = f.iloc[list(sorted_dic.keys())[2],:].to_dict()
+    if 'global' in ast.literal_eval(ins1['country']):
+      ins1['continent'] = 'all'  
+    if 'global' in ast.literal_eval(ins2['country']):
+      ins2['continent'] = 'all'    
+    if 'global' in ast.literal_eval(ins3['country']):
+      ins3['continent'] = 'all'      
+    if len(ast.literal_eval(ins1['country'])) == 0:
+      ins1['country'] = 'almost all countries'
+    if len(ast.literal_eval(ins2['country'])) == 0:
+      ins2['country'] = 'almost all countries'
+    if len(ast.literal_eval(ins3['country'])) == 0:
+      ins3['country'] = 'almost all countries'
     results = {'result1' : ins1, 'result2' : ins2, 'result3' : ins3}
+    flag = 1
   ##plot the 3 topmost results
-  import matplotlib.pyplot as plt
-  fig, ax = plt.subplots()
-  ax.pie(counts, labels=names, autopct='%1.1f%%')
-  plt.savefig("/result1.png", pad_inches = 0.2, bbox_inches = 'tight')
-  return(results)
+  if flag == 1:
+    fig, ax = plt.subplots()
+    img = BytesIO()
+    ax.pie(counts, labels=names, autopct='%1.1f%%')
+    plt.savefig(img, format='JPEG')
+    plt.close()
+    #img.seek(0)
+    plot_url = base64.b64encode(img.getvalue()).decode('utf-8')
+    #plt.savefig("/result1.png", pad_inches = 0.2, bbox_inches = 'tight')
+  return(results,plot_url)
+
 
 
 
