@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <title>ApplePy Your Result</title>
@@ -36,31 +36,79 @@
 <!-- Best Fitting Charities Section -->
 <div class="w3-container w3-padding-15" id="about">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Your Result</h3>
-    <p>The charity that fits your preferences best is:</p>
-    <div class="w3-half l3 m6 w3-margin-bottom">
+    <p>The 3 charity that fit your preferences best are:</p>
+    <div class="w3-col l3 m6 w3-margin-bottom">
     <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">Boat People Projekt</div>
-        <img src="static/Apfelkuchen.jpg" alt="Mosquito" style="width:100%" title = "Distributing low cost nets to guard against mosquito bites to prevent malaria infections.">
+      <div class="w3-display-topleft w3-black w3-padding">{result1_padded['name']}</div>
     </div>
     </div>
-    <div class="w3-half l3 m6 w3-margin-bottom">
+    <div class="w3-col l3 m6 w3-margin-bottom">
     <div class="w3-display-container">
         <br>
         <br>
         <br>
-        <p>active in Germany, Europe</p>
+        <p>active in {result1_padded['country']}, {result1_padded['continent']}</p>
         <br>
-        <p>with an efficieny rating of 4</p>
-        <p>Top-rated Impact</p>
-        <p>Boat People Projekt is recognized as highly effective and impactful by Example Evaluator</p>
-        <p>More info on the efficiency and cost <a target="_blank" rel="noopener noreferrer" href=https://boatpeopleprojekt.de/kontakt/spenden>here</a></p>
+        <p>with an efficieny rating of {result1_padded['efficiency']}</p>
+        <p>{result1_padded['e_title']}</p>
+        <p>{result1_padded['e_text']}</p>
+        <p>More info on the efficiency and cost <a target="_blank" rel="noopener noreferrer" href={result1_padded['link_cost']}>here</a></p>
         <br>
-        <p>Does Boat People Projekt work to prevent an existential crisis for humanity (f.e. climate change, nuclear war)? no</p>
+        <p>Does {result1_padded['name']} work to prevent an existential crisis for humanity (f.e. climate change, nuclear war)? 
+          <br> {result1_padded['xcrisis']}</p>
         <br>
-        <p>More info about the charity <a target="_blank" rel="noopener noreferrer" href=https://boatpeopleprojekt.de/>here</a></p>
+        <p>More info about the charity <a target="_blank" rel="noopener noreferrer" href={result1_padded['link_website']}>here</a></p>
         <br>     
     </div>
-    </div>   
+    </div> 
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">{result2_padded['name']}</div>
+      </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+          <br>
+          <br>
+          <br>
+          <p>active in {result2_padded['country']}, {result2_padded['continent']}</p>
+          <br>
+          <p>with an efficieny rating of {result1_padded['efficiency']}</p>
+          <p>{result2_padded['e_title']}</p>
+          <p>{result2_padded['e_text']}</p>
+          <p>More info on the efficiency and cost <a target="_blank" rel="noopener noreferrer" href={result2_padded['link_cost']}>here</a></p>
+          <br>
+          <p>Does {result2_padded['name']} work to prevent an existential crisis for humanity (f.e. climate change, nuclear war)? 
+            <br> {result2_padded['xcrisis']}</p>
+          <br>
+          <p>More info about the charity <a target="_blank" rel="noopener noreferrer" href={result2_padded['link_website']}>here</a></p>
+          <br>     
+      </div>
+      </div> 
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">{result3_padded['name']}</div>
+        </div>
+        </div>
+        <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+            <br>
+            <br>
+            <br>
+            <p>active in {result3_padded['country']}, {result3_padded['continent']}</p>
+            <br>
+            <p>with an efficieny rating of {result3_padded['efficiency']}</p>
+            <p>{result3_padded['e_title']}</p>
+            <p>{result3_padded['e_text']}</p>
+            <p>More info on the efficiency and cost <a target="_blank" rel="noopener noreferrer" href={result3_padded['link_cost']}>here</a></p>
+            <br>
+            <p>Does {result3_padded['name']} work to prevent an existential crisis for humanity (f.e. climate change, nuclear war)? 
+              <br> {result3_padded['xcrisis']}</p>
+            <br>
+            <p>More info about the charity <a target="_blank" rel="noopener noreferrer" href={result3_padded['link_website']}>here</a></p>
+            <br>     
+        </div>
+        </div>   
 </div>
 
 <!-- Dynamic visualisation -->
@@ -83,17 +131,17 @@
         <br>
         <br>
         <h5>Where should the charity be active?</h5>
-        <p>Random Charity</p>
+        <p>{data['a_continent']}</p>
         <h5>In which country should the charity be active?</h5>
-        <p>Random Charity</p>
+        <p>{data['a_country']}</p>
         <h5>What should the charity work on in general?</h5>
-        <p>Random Charity</p>
+        <p>{data['a_topic_g']}</p>
         <h5>What should the charity work on more specifically?</h5>
-        <p>Random Charity</p>
+        <p>{data['a_topic_s']}</p>
         <h5>Do you want to apply the x-crisis filter?</h5>
-        <p>Random Charity</p>
+        <p>{data['xcrisis']}</p>
         <h5>On a scale of 1 to 5, how important is cost-efficiency to you?</h5>
-        <p>Random Charity</p>
+        <p>{data['efficiency']}</p>
     </div>
     <a href="questionnaire.html" class="w3-button w3-black w3-section"> Try Again</a>
     </div>

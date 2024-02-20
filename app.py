@@ -29,12 +29,12 @@ def pad_result(result: dict):
     return result_padded
 
 # convert charity info to pretty html 
-def result_to_html(data, result_padded):
-    """This function rewrites the html-template in RESULT_HTML with the info of the best match."""
+def result_to_html(data, result1_padded, result2_padded, result3_padded):
+    """This function rewrites the html-template in RESULT_HTML with the info of the 3 best matches."""
     with open(os.path.join(os.getcwd(),'docs','result.html'), 'w') as f:        # dynamic, cross-plattform path
         data = data
         result_padded = result_padded
-        RESULT_HTML = f""" <!DOCTYPE html>
+        RESULT_HTML = f"""<!DOCTYPE html>
 <html>
 <head>
 <title>ApplePy Your Result</title>
@@ -72,31 +72,79 @@ def result_to_html(data, result_padded):
 <!-- Best Fitting Charities Section -->
 <div class="w3-container w3-padding-15" id="about">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Your Result</h3>
-    <p>The charity that fits your preferences best is:</p>
-    <div class="w3-half l3 m6 w3-margin-bottom">
+    <p>The 3 charity that fit your preferences best are:</p>
+    <div class="w3-col l3 m6 w3-margin-bottom">
     <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">{ result_padded['name'] }</div>
-        <img src="static/Apfelkuchen.jpg" alt="Mosquito" style="width:100%" title = "Distributing low cost nets to guard against mosquito bites to prevent malaria infections.">
+      <div class="w3-display-topleft w3-black w3-padding">{result1_padded['name']}</div>
     </div>
     </div>
-    <div class="w3-half l3 m6 w3-margin-bottom">
+    <div class="w3-col l3 m6 w3-margin-bottom">
     <div class="w3-display-container">
         <br>
         <br>
         <br>
-        <p>active in { result_padded['country'] }, {result_padded['continent']}</p>
+        <p>active in {result1_padded['country']}, {result1_padded['continent']}</p>
         <br>
-        <p>with an efficieny rating of { result_padded['efficiency'] }</p>
-        <p>{ result_padded['e_title'] }</p>
-        <p>{ result_padded['e_text'] }</p>
-        <p>More info on the efficiency and cost <a target="_blank" rel="noopener noreferrer" href={ result_padded['link_cost'] }>here</a></p>
+        <p>with an efficieny rating of {result1_padded['efficiency']}</p>
+        <p>{result1_padded['e_title']}</p>
+        <p>{result1_padded['e_text']}</p>
+        <p>More info on the efficiency and cost <a target="_blank" rel="noopener noreferrer" href={result1_padded['link_cost']}>here</a></p>
         <br>
-        <p>Does { result_padded['name'] } work to prevent an existential crisis for humanity (f.e. climate change, nuclear war)? { result_padded['xcrisis'] }</p>
+        <p>Does {result1_padded['name']} work to prevent an existential crisis for humanity (f.e. climate change, nuclear war)? 
+          <br> {result1_padded['xcrisis']}</p>
         <br>
-        <p>More info about the charity <a target="_blank" rel="noopener noreferrer" href={ result_padded['link_website'] }>here</a></p>
+        <p>More info about the charity <a target="_blank" rel="noopener noreferrer" href={result1_padded['link_website']}>here</a></p>
         <br>     
     </div>
-    </div>   
+    </div> 
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">{result2_padded['name']}</div>
+      </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+          <br>
+          <br>
+          <br>
+          <p>active in {result2_padded['country']}, {result2_padded['continent']}</p>
+          <br>
+          <p>with an efficieny rating of {result1_padded['efficiency']}</p>
+          <p>{result2_padded['e_title']}</p>
+          <p>{result2_padded['e_text']}</p>
+          <p>More info on the efficiency and cost <a target="_blank" rel="noopener noreferrer" href={result2_padded['link_cost']}>here</a></p>
+          <br>
+          <p>Does {result2_padded['name']} work to prevent an existential crisis for humanity (f.e. climate change, nuclear war)? 
+            <br> {result2_padded['xcrisis']}</p>
+          <br>
+          <p>More info about the charity <a target="_blank" rel="noopener noreferrer" href={result2_padded['link_website']}>here</a></p>
+          <br>     
+      </div>
+      </div> 
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">{result3_padded['name']}</div>
+        </div>
+        </div>
+        <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+            <br>
+            <br>
+            <br>
+            <p>active in {result3_padded['country']}, {result3_padded['continent']}</p>
+            <br>
+            <p>with an efficieny rating of {result3_padded['efficiency']}</p>
+            <p>{result3_padded['e_title']}</p>
+            <p>{result3_padded['e_text']}</p>
+            <p>More info on the efficiency and cost <a target="_blank" rel="noopener noreferrer" href={result3_padded['link_cost']}>here</a></p>
+            <br>
+            <p>Does {result3_padded['name']} work to prevent an existential crisis for humanity (f.e. climate change, nuclear war)? 
+              <br> {result3_padded['xcrisis']}</p>
+            <br>
+            <p>More info about the charity <a target="_blank" rel="noopener noreferrer" href={result3_padded['link_website']}>here</a></p>
+            <br>     
+        </div>
+        </div>   
 </div>
 
 <!-- Dynamic visualisation -->
@@ -119,17 +167,17 @@ def result_to_html(data, result_padded):
         <br>
         <br>
         <h5>Where should the charity be active?</h5>
-        <p>{ data['a_continent'] }</p>
+        <p>{data['a_continent']}</p>
         <h5>In which country should the charity be active?</h5>
-        <p>{ data['a_country'] }</p>
+        <p>{data['a_country']}</p>
         <h5>What should the charity work on in general?</h5>
-        <p>{ data['a_topic_g'] }</p>
+        <p>{data['a_topic_g']}</p>
         <h5>What should the charity work on more specifically?</h5>
-        <p>{ data['a_topic_s'] }</p>
+        <p>{data['a_topic_s']}</p>
         <h5>Do you want to apply the x-crisis filter?</h5>
-        <p>{ data['xcrisis'] }</p>
+        <p>{data['xcrisis']}</p>
         <h5>On a scale of 1 to 5, how important is cost-efficiency to you?</h5>
-        <p>{ data['efficiency'] }</p>
+        <p>{data['efficiency']}</p>
     </div>
     <a href="questionnaire.html" class="w3-button w3-black w3-section"> Try Again</a>
     </div>
@@ -150,7 +198,7 @@ def result_to_html(data, result_padded):
 <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
 </body>
-</html> """
+</html>  """
         f.write(RESULT_HTML)
  
 ## url handling
@@ -188,10 +236,14 @@ def submit_questionnaire():
     """Handles and pads the data from the questionnaire, renders the result html."""
     if request.method == 'POST':
         data=request.form.to_dict()     # get the data from the http POST-method into a dict
-        result = analysis.produce_result()      # get the result from the analysis-algorithm
-        
-        result_padded = pad_result(result)      # add info about the efficiency rating
-        result_to_html(data, result_padded)     # rewrite the result.html with the info above
+        result = doing_search.main()      # get the result from the analysis-algorithm
+        result1 = result['result1']
+        result2 = result['result2']
+        result3 = result['result3']
+        result1_padded = pad_result(result1)      # add info about the efficiency rating
+        result2_padded = pad_result(result2)
+        result3_padded = pad_result(result3)
+        result_to_html(data, result1_padded, result2_padded, result3_padded)     # rewrite the result.html with the result info
         return render_template('result.html')
     
 @app.route('/try_again')
