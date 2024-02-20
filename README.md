@@ -157,11 +157,11 @@ Then update the @app.route('/submit_questionnaire') part in app.py to call your 
 
 ## Group Details
 
-Group Name: ApplyPY
-Group Leader: Emma Stein
-Group Members: Emma Stein, Lena-Sinwo Ngassa, Paula Kottwitz, Sina Garazhian
-Tutor: Lars Kaesberg
-
+Group Name: ApplyPY <br>
+Group Leader: Emma Stein <br>
+Group Members: Emma Stein, Lena-Sinwo Ngassa, Paula Kottwitz, Sina Garazhian <br>
+Tutor: Lars Kaesberg <br>
+<br>
 We developed the idea of the project and set up the timeline together. For detailed information on who worked on which parts of the project refer to `contributions.md`.
 
 ## Data Sources
