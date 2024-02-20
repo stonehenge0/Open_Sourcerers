@@ -187,7 +187,7 @@ def main(user_continent, user_country, user_category
     fig, ax = plt.subplots()
     img = BytesIO()
     ax.pie(counts, labels=names, autopct='%1.1f%%')
-    plt.savefig(img, format='JPEG')
+    plt.savefig(img, format='JPEG', pad_inches = 0.2, bbox_inches = 'tight')
     plt.close()
     #img.seek(0)
     plot_url = base64.b64encode(img.getvalue()).decode('utf-8')
