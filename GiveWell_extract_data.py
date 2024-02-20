@@ -2,6 +2,10 @@
 
 
 NOTE: The dependency pycountry_convert needs to be installed separately.
+NOTE: When you run this program, it will most likely return an error message like this one: 
+ "UserWarning: Country's common_name not found. Country name provided instead.". You can ignore 
+ the errormessage, it just means that a different way of naming a Country had to be provided (that
+ is still recognizable and ISO coded), so it will not cause problems down the line. 
 
 """
 

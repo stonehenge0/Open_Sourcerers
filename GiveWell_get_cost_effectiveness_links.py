@@ -84,7 +84,7 @@ def get_final_ce_link(links):
 
 ## Read in files.
 script_dir = os.path.dirname(__file__)
-data_filename = "\\ordered_CONSTANTS.xlsx"
+data_filename = "\\GiveWell_webscraped_and_extracted.xlsx"
 data_path = script_dir+data_filename
 
 df = pd.read_excel(data_path)
@@ -93,7 +93,7 @@ df = pd.read_excel(data_path)
 if __name__ == "__main__":
     df['final_ce'] = df['Cost-efficiency'].apply(lambda link_list: get_final_ce_link(link_list))
 
-    output_excel_file = 'finished_ce.xlsx'
+    output_excel_file = 'GiveWell_with_final_ce.xlsx'
     df.to_excel(output_excel_file, index=False)
 
 
