@@ -40,3 +40,26 @@ An overview of who did what during the project.
 - `docs/help.html`
 - `/app.py`
 - `/analysis.py` helperfile
+
+---
+
+**Lena-Sinwo**
+- researched charity evaluators for sources
+- discussion of questionair questions
+- charity categorization
+- user-friendly explanation of statistics
+  
+- `data/ACE_get_data.py`
+- `data/ACE_get_more_data.py`
+- `data/ACE_cleanup.py`
+- `data/ACE_data_01.csv`
+- `data/ACE_more_info.xlsx`
+- `data/final_ACE.xlsx`
+- `data/DZI_get_data.py`
+- `data/DZI_get_more_data.py`
+- `data/DZI_cleanup.py`
+- `data/dzi_01.csv`
+- `data/dzi_more_info.csv`
+- `data/final_DZI.xlsx`
+ 
+ 
