@@ -108,7 +108,8 @@ If your server is set up, execute "app.py" and open your url. You should now hav
 ## How to use and extend the project? (maybe)
 The different .py skripts in the 'data' folder all work together to collect and clean the data from the four different charity evaluators we used. It also includs excel spreadsheets of our final version of the collected data (final_XX.xlsx), that can easily be downloaded to use the statistical skripts on the data. To recreate the sheets the user would have to run the different skripts for each Website in order (e.g. XX_get_data.py, XX_get_more_data.py, cleanup_XX.py). One way to extend the project would be to gather more data on charities, for example from other charity evaluators. The data used for the statistical analysis is formatted to an excel table with headings "name", "category", "x-crisis", "country", "continent", "efficiency", "evaluator" and "website" and modify the statistical analysis code to include the new data. 
 
-The website runs via "app.py". As Flask handles the communication between backend and frontend an WSGI-server is required. See above for more details on installation.
+The website runs via "app.py". As Flask handles the communication between backend and frontend an WSGI-server is required, if you want to access the website via the internet. See above for more details on installation.
+
 If you want to add further html-pages, remember to create a new route in app.py and reference the new page on existing html-pages (via single button reference like our submit-questionnaire button or via the menu on all pages). You could also use our website with a different dataset. For this you have to edit the contents of the html-pages and update the @app.route('/submit_questionnaire') part in app.py to call your own functions OR update doing_search.py to load your spreadsheet as dataframe.
 
 --- explain in more detail?
