@@ -66,11 +66,21 @@ def submit_questionnaire():
     if request.method == 'POST':
         data=request.form.to_dict()     # get the data from the http POST-method into a dict
         data_continent = request.form.getlist('a_continent')
-        print(data_continent)
+        w_count = int(data['country_radio'])
+        w_cont = int(data['continent_radio'])
+        w_categ = int(data['category_radio'])
+        print("here")
+        print(type(w_categ))
+        w_eff = int(data['eff_radio'])
+        w_xcrisis = int(data['xcrisis_radio'])
+        print(type(w_count))
+        weights = [w_count, w_cont, w_categ, w_eff, w_xcrisis]
         data_country = request.form.getlist('a_country')
         data_category_g = request.form.getlist('a_topic_g')
         data_category_s = request.form.getlist('a_topic_s')
         data_category = data_category_g +data_category_s
+        data_category = set(data_category)
+        data_category = list(data_category)
         data_x = data['xcrisis']
         data_eff = data['efficiency']
         country = pd.read_csv(os.path.join(os.getcwd(),"data", "country_levels.csv"))
@@ -83,7 +93,7 @@ def submit_questionnaire():
         #data = {'a_continent' : data_continent, 'a_country' : data_country, 'a_category' : data_category,
         	#'xcrisis' : data_x, 'efficiency' : data_eff, 'img_url' : plot_url}
         result, plot_url = doing_search.main(data_continent,data_country
-        	,data_category,data_x, data_eff)	# get the result from the analysis-algorithm
+        	,data_category,data_x, data_eff, weights)	# get the result from the analysis-algorithm
         data = {'a_continent' : data_user_cont, 'a_country' : data_user_count, 'a_category' : data_user_categ,
         	'xcrisis' : data_x, 'efficiency' : data_eff, 'img_url' : plot_url}
         result_padded = result      	# add info about the efficiency rating
@@ -112,16 +122,19 @@ def search_over(temp,vec,mode):
         #print(type(i))
           if int(i) == int(j):
             emp.append(temp.iloc[j_index,0])
+            break
     elif mode == 0:
       for i in vec:
         for j_index,j in enumerate(temp.iloc[:,1].to_list()):
           if int(i) == int(j):
             emp.append(temp.iloc[j_index,0])
+            break
     elif mode == 2:
       for i in vec:
         for j_index,j in enumerate(temp.iloc[:,2].to_list()):
           if int(i) == int(j):
             emp.append(temp.iloc[j_index,1])
+            break
     return(emp)
 
 
