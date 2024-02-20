@@ -29,12 +29,10 @@ def main(user_continent, user_country, user_category
   category_levels = pd.read_csv(os.path.join(os.getcwd(),"data","category_levels.csv"))
   continent_levels = pd.read_csv(os.path.join(os.getcwd(),"data","continent_levels.csv"))
   temp = []
-  print(user_country)
   for i in user_continent:
     temp.append(int(i))
   user_continent = temp
   temp = []
-  print(2)
   for i in user_category:
     try:
       temp.append(int(i))
@@ -42,19 +40,18 @@ def main(user_continent, user_country, user_category
       continue
   user_category = temp
   temp = []
-  print(user_continent)
   for i in user_country:
     try:
       temp.append(int(i))
     except Exception:
       continue
   user_country = temp
-  print(user_x)
+
   if user_x == 'no':
     user_x = [0]
   else:
     user_x = [1]
-  print(5)
+
   user_eff = [int(user_eff)]
   f = pd.read_csv(directory_of_dataset)
   ##create a function as distance metric to calculate similarity between what user entered and the charities existed in the dataset
@@ -75,7 +72,7 @@ def main(user_continent, user_country, user_category
 
     for i in wanted:
       if i in desired_vector:
-        k = k + 5
+        k = k + 10
       elif i not in desired_vector and feature:
         k = k + iterate_1(i,desired_vector)
     return(k)
@@ -83,14 +80,15 @@ def main(user_continent, user_country, user_category
   total_scores = []
   for index, row in f.iterrows():
     v_1 = calculate_over_all(row['categ_continent'], user_continent)
-  #print(row['efficiency'])
+    print(user_eff)
+    print(row['efficiency'])
     v_2 = calculate_over_all([row['efficiency']], user_eff)
   #print(row['country'])
     v_3 = calculate_over_all(row['categ_country'], user_country)
     v_4 = calculate_over_all(row['categ_category'], user_category, True)
   #print(row['categ_x'])
     v_5 = calculate_over_all([row['categ_x']], user_x, 1)
-    total_scores.append((v_1+v_2+v_3+v_4+v_5))
+    total_scores.append((0.5 * v_1+ 0.8 * v_2+0.5 * v_3+0.6 * v_4+0.9 * v_5))
   ##sort the results based on their similarity score
   emp_dic = {}
   k = 0
@@ -134,7 +132,7 @@ def main(user_continent, user_country, user_category
     v_4 = calculate_over_all(row['categ_category'], user_category, True)
   #print(row['categ_x'])
     v_5 = calculate_over_all([row['categ_x']], user_x)
-    total_scores_1.append((v_1+v_2+v_3+v_4+v_5))
+    total_scores_1.append((0.5 * v_1+ 0.8 * v_2+0.5 * v_3+0.6 * v_4+0.9 * v_5))
   emp_dic_1 = {}
   k = 0
   for i in total_scores_1:
