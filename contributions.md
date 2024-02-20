@@ -7,21 +7,15 @@ An overview of who did what during the project.
 - `data/GiveWell_with_final_ce_links.xlsx`
 - `data/GiveWell_almost_finished.xlsx`
 - `data/final_GiveWell_and_GWWC.xlsx`
-<br>
-
 - `docs/index.html` sections: Example charities, About, Visualizations generated (Paula put them online), general layout and pictures.
 - `docs/help.html` general layout and wrote half of the questions.  
-<br>
-
 - `docs/charity_categories.py`
 - `docs/distribution_charity_sources.py`
-<br>
 
 - Hosting of the website (without Python functionality)
 - General Layout of the Website
 - `README.md` sections: Charity Picker, Motivation, Features, Code Examples, GitHub Pages/Website, Installation
 - Virtual environment (`requirements.txt`)
-<br>
  
 - research charity evaluators for sources
 - Cost-effectiveness Guidelines
