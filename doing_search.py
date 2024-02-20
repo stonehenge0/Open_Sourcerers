@@ -80,15 +80,13 @@ def main(user_continent, user_country, user_category
   total_scores = []
   for index, row in f.iterrows():
     v_1 = calculate_over_all(row['categ_continent'], user_continent)
-    print(user_eff)
-    print(row['efficiency'])
     v_2 = calculate_over_all([row['efficiency']], user_eff)
   #print(row['country'])
     v_3 = calculate_over_all(row['categ_country'], user_country)
     v_4 = calculate_over_all(row['categ_category'], user_category, True)
   #print(row['categ_x'])
     v_5 = calculate_over_all([row['categ_x']], user_x, 1)
-    total_scores.append((0.5 * v_1+ 0.8 * v_2+0.5 * v_3+0.6 * v_4+0.9 * v_5))
+    total_scores.append((0.1 * v_1+ 0.1 * v_2+0.1 * v_3+0.1 * v_4+0.6 * v_5))
   ##sort the results based on their similarity score
   emp_dic = {}
   k = 0
@@ -141,6 +139,7 @@ def main(user_continent, user_country, user_category
   sorted_dic_1 = dict(sorted(emp_dic_1.items(), key=lambda x:x[1] , reverse= True))
   flag = 0
   if len(sorted_dic_1) >= 3:
+    print(1)
     names = [g.iloc[int(x),1] for x in list(sorted_dic_1.keys())[0:3]]
     counts = list(sorted_dic_1.values())[0:3]
     ins1 = f.iloc[list(sorted_dic_1.keys())[0],:].to_dict()
@@ -162,6 +161,8 @@ def main(user_continent, user_country, user_category
     results = {'result1' : ins1, 'result2' : ins2, 'result3' : ins3}
     flag = 1
   else:
+    print(2)
+    print(g.shape)
     names = [f.iloc[int(x),1] for x in list(sorted_dic.keys())[0:3]]
     counts = list(sorted_dic.values())[0:3]
     ins1 = f.iloc[list(sorted_dic.keys())[0],:].to_dict()
