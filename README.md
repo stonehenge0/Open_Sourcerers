@@ -79,23 +79,14 @@ for i in d['category']:
 ```
 
 Topic | levels |
---- | --- |
 infrastructure | 1 | 
---- | --- |
 rural areas	 | 6 |
---- | --- |
 healthcare and preventioni | 11 |
---- | --- |
 maternal and neonatal health | 12 |	
---- | --- |
 vaccinations | 13 |
---- | --- |
 Malaria | 14 |
---- | --- |
 HIV/AIDS | 15 |	
---- | --- |
 orthopedic treatment | 16 |
---- | --- |
 children, youth and family | 21 |
 
 
