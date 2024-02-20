@@ -29,33 +29,33 @@ def main(user_continent, user_country, user_category
   category_levels = pd.read_csv(os.path.join(os.getcwd(),"data","category_levels.csv"))
   continent_levels = pd.read_csv(os.path.join(os.getcwd(),"data","continent_levels.csv"))
   temp = []
-  print(1)
+  print(user_country)
   for i in user_continent:
-    temp.append(int(continent_levels.loc[continent_levels['continent'] == i,:]['levels']))
+    temp.append(int(i))
   user_continent = temp
   temp = []
   print(2)
   for i in user_category:
     try:
-      temp.append(int(category_levels.loc[category_levels['category'] == i,:]['meaningful_levels']))
+      temp.append(int(i))
     except Exception:
       continue
   user_category = temp
   temp = []
-  print(3)
+  print(user_continent)
   for i in user_country:
     try:
-      temp.append(int(country_levels.loc[country_levels['country'] == i,:]['levels']))
+      temp.append(int(i))
     except Exception:
       continue
   user_country = temp
-  print(4)
+  print(user_x)
   if user_x == 'no':
     user_x = [0]
   else:
     user_x = [1]
   print(5)
-  #user_eff = [int(user_eff)]
+  user_eff = [int(user_eff)]
   f = pd.read_csv(directory_of_dataset)
   ##create a function as distance metric to calculate similarity between what user entered and the charities existed in the dataset
   ##first, it gives the exact mathces between user entry and dataset 5 score, then it searched over similar category feature and gave a score depeneds on similarity between user input and dataset
@@ -194,7 +194,6 @@ def main(user_continent, user_country, user_category
     plot_url = base64.b64encode(img.getvalue()).decode('utf-8')
     #plt.savefig("/result1.png", pad_inches = 0.2, bbox_inches = 'tight')
   return(results,plot_url)
-
 
 
 
