@@ -190,11 +190,21 @@ def questionnaire():
     country = pd.read_csv(os.path.join(os.getcwd(),"data", "country_levels.csv"))
     category = pd.read_csv(os.path.join(os.getcwd(),"data","category_levels.csv"))
     continent = pd.read_csv(os.path.join(os.getcwd(),"data","continent_levels.csv"))
-
-    
-    return render_template('questionnaire.html', countries = country['country'].to_list()
-    	, continents = continent['continent'].to_list()
-    	, categories = category['category'].to_list())
+    countries = country['country'].to_list()
+    countries_id = country['levels'].to_list()
+    len_count = len(countries_id)
+    continents = continent['continent'].to_list()
+    continents_id = continent['levels'].to_list()
+    len_con = len(continents_id)
+    categories = category['category'].to_list()
+    categories_id = category['meaningful_levels'].to_list()
+    len_cate = len(categories_id)
+    print(len_cate)
+    print(type(len_cate))
+    return render_template('questionnaire.html', 
+    countries = countries, countries_id = countries_id, len_count = len_count,
+    		continents = continents, continents_id = continents_id, len_con = len_con
+    	, categories = categories, categories_id = categories_id, len_cate = len_cate)
 
 @app.route('/submit_questionnaire', methods = ['POST'])
 def submit_questionnaire():
@@ -209,15 +219,22 @@ def submit_questionnaire():
         data_category = data_category_g +data_category_s
         data_x = data['xcrisis']
         data_eff = data['efficiency']
+        country = pd.read_csv(os.path.join(os.getcwd(),"data", "country_levels.csv"))
+        category = pd.read_csv(os.path.join(os.getcwd(),"data","category_levels.csv"))
+        continent = pd.read_csv(os.path.join(os.getcwd(),"data","continent_levels.csv"))
+        data_user_cont = search_over(continent,data_continent,0)
+        data_user_count = search_over(country,data_country,2)
+        data_user_categ = search_over(category,data_category,1)
+                
         #data = {'a_continent' : data_continent, 'a_country' : data_country, 'a_category' : data_category,
         	#'xcrisis' : data_x, 'efficiency' : data_eff, 'img_url' : plot_url}
         result, plot_url = doing_search.main(data_continent,data_country
         	,data_category,data_x, data_eff)	# get the result from the analysis-algorithm
-        data = {'a_continent' : data_continent, 'a_country' : data_country, 'a_category' : data_category,
+        data = {'a_continent' : data_user_cont, 'a_country' : data_user_count, 'a_category' : data_user_categ,
         	'xcrisis' : data_x, 'efficiency' : data_eff, 'img_url' : plot_url}
         result_padded = pad_result(result)      	# add info about the efficiency rating
         result_to_html(data, result_padded) 
-        #print(result)    	# rewrite the result.html with the info above
+        #print(result['result1'])    	# rewrite the result.html with the info above
         return render_template('result.html')
     
 @app.route('/try_again')
@@ -231,6 +248,27 @@ def try_again():
 def help():
     """Renders help html."""
     return render_template('help.html')
+
+def search_over(temp,vec,mode):
+    emp = []
+    if mode == 1:
+      for i in vec:
+        for j_index,j in enumerate(temp.iloc[:,2].to_list()):
+        #print(type(j))
+        #print(type(i))
+          if int(i) == int(j):
+            emp.append(temp.iloc[j_index,0])
+    elif mode == 0:
+      for i in vec:
+        for j_index,j in enumerate(temp.iloc[:,1].to_list()):
+          if int(i) == int(j):
+            emp.append(temp.iloc[j_index,0])
+    elif mode == 2:
+      for i in vec:
+        for j_index,j in enumerate(temp.iloc[:,2].to_list()):
+          if int(i) == int(j):
+            emp.append(temp.iloc[j_index,1])
+    return(emp)
 
 
 
