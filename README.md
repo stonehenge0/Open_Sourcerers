@@ -155,18 +155,21 @@ Then update the @app.route('/submit_questionnaire') part in app.py to call your 
 
 --- explain in more detail?
 
-Include a step-by-step guide that enables others to use and extend your code for their projects. Whether this section is required and whether it should be part of the `README.md` or a separate file depends on your project. If the **very short** `Code Examples` from above comprehensively cover (despite being concise!) all the major functionality of your project already, this section can be omitted. **If you think that users/developers will need more information than the brief code examples above to fully understand your code, this section is mandatory.** If your project requires significant information on code reuse, place the information into a new `.md` file.
-
 ## Group Details
 
-Who did what?
-Emma - Group leader, data collection and cleanup for GiveWell and (the other website), website setup. 
-Paula - Website backend and content of the frontend (not the layout)
-Sina - Statistical analysis
-Lena-Sinwo - Gathering data from Animalchariyevaluator.org and dzi.de, cleaning and organizing this data. 
-Florian (left the group) - 
+Group Name: ApplyPY
+Group Leader: Emma Stein
+Group Members: Emma Stein, Lena-Sinwo Ngassa, Paula Kottwitz, Sina Garazhian
+Tutor: Lars Kaesberg
 
-We developed the idea of the project and set up the timeline together. 
+We developed the idea of the project and set up the timeline together. For detailed information on who worked on which parts of the project refer to `contributions.md`.
+
+## Data Sources
+Charity evaluation data was collected from
+* [GiveWell](https://www.givewell.org/)
+* [Giving What We Can](https://www.givingwhatwecan.org/)
+* [Deutsches Institut für soziale Fragen](https://www.dzi.de/)
+* [Animal Charity Evaluators](https://animalcharityevaluators.org/)
 
 ## License
 Include the project's license. Usually, we suggest MIT or Apache. Ask your supervisor. For example:
