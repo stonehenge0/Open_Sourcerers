@@ -82,7 +82,7 @@ Topic | levels |
  ---- | --- |
 infrastructure | 1 | 
 rural areas	 | 6 |
-healthcare and preventioni | 11 |
+healthcare and prevention | 11 |
 maternal and neonatal health | 12 |	
 vaccinations | 13 |
 Malaria | 14 |
@@ -101,7 +101,50 @@ user_continent = temp
 temp = []
 ```
 
-Then, these scores get matched to charities, that exactly match your preferences. Each item contributes to the "similarity score", i.e. how similar the charity is to your preference. In a second step, the algorithem determines, which charities are the next closest matches, using the assigned values as a basis for vector distance calculations. It then ranks the charities it found based on the similarity score and shows you the once most closely matchin all your criteria. 
+Then, these scores get matched to charities, that exactly match your preferences. Each item contributes to the "similarity score", i.e. how similar the charity is to your preference. In a second step, the algorithem determines, which charities are the next closest matches, using the assigned values as a basis for vector distance calculations. It then ranks the charities it found based on the similarity score and shows you the one that most closely matches all your criteria.
+in the below code example, the algorithm tries to give any match 5 scores. moreover, the algorithm gives between 1 to 3 scores to close matches for the topic category. here, the column and wanted arguments are the feature and user input, respectively. moreover, the feature argument is only set to True for topics and efficiency features because their categorization method is more meaningful than other feature categorization methods.
+```sh
+  def iterate_1(amount, vec):
+    dists = [((amount-x)**2)**0.5 for x in vec if ((amount-x)**2)**0.5 <= 3]
+    try:
+      return(min(dists))
+    except Exception:
+      return(0)
+  def calculate_over_all(column, wanted, feature = False):
+    scores = []
+    k = 0
+    try:
+      desired_vector = ast.literal_eval(column)
+    except Exception:
+      desired_vector = column
+
+    for i in wanted:
+      if i in desired_vector:
+        k = k + 10
+      elif i not in desired_vector and feature:
+        k = k + iterate_1(i,desired_vector)
+    return(k)
+  total_scores = []
+  for index, row in f.iterrows():
+    v_1 = calculate_over_all(row['categ_continent'], user_continent)
+
+  #print(row['efficiency'])
+    v_2 = calculate_over_all([row['efficiency']], user_eff, True)
+  #print(row['country'])
+    v_3 = calculate_over_all(row['categ_country'], user_country)
+    v_4 = calculate_over_all(row['categ_category'], user_category, True)
+  #print(row['categ_x'])
+    v_5 = calculate_over_all([row['categ_x']], user_x, 1)
+    total_scores.append((v_1+v_2+v_3+v_4+v_5))
+  ##sort the results based on their similarity score
+  emp_dic = {}
+  k = 0
+  for i in total_scores:
+    emp_dic[k] = i
+    k = k + 1
+  sorted_dic = dict(sorted(emp_dic.items(), key=lambda x:x[1] , reverse= True))
+
+```
 
 
 We also create visualizations about our database and about the results of the user preferences and display them on the website. 
