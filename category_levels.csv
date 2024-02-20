@@ -1,0 +1,44 @@
+category,levels,meaningful_levels
+infrastructure,1,1
+rural areas,2,6
+healthcare and preventioni,3,11
+healthcare and prevention,3,11
+maternal and neonatal health,4,12
+vaccinations,5,13
+vaccines,5,13
+prevention (other),6,14
+Malaria,7,15
+malaria,7,15
+HIV/AIDS,8,16
+orthopedic treatment,9,17
+treatment (other),10,18
+eyes,11,19
+"children, youth and family",12,24
+children,12,24
+youth and family,12,24
+women's empowerment,13,25
+refugees,14,26
+individual support,15,27
+people with disabilities,16,28
+elderly,17,29
+criminal offenders,18,30
+addiction,19,31
+hunger,20,36
+economic development,21,42
+farming,22,43
+culture and religion,23,48
+intercultural understanding,24,49
+sports,25,50
+research,26,51
+campaigning and educational work,27,52
+human rights,28,57
+environment and conservation,29,62
+disaster relief,30,67
+emergency medical services,31,68
+water,32,73
+general animal welfare,33,78
+animal rights,34,79
+nutrition and industrial lifestock alternatives,35,80
+climate change,36,85
+nuclear war,37,90
+AI safety,38,95

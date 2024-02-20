@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import os
-import analysis
+import doing_search
 
 ## constants 
 app = Flask(__name__, static_folder='docs/static', template_folder='docs')
@@ -189,6 +189,7 @@ def submit_questionnaire():
     if request.method == 'POST':
         data=request.form.to_dict()     # get the data from the http POST-method into a dict
         result = analysis.produce_result()      # get the result from the analysis-algorithm
+        
         result_padded = pad_result(result)      # add info about the efficiency rating
         result_to_html(data, result_padded)     # rewrite the result.html with the info above
         return render_template('result.html')
