@@ -204,6 +204,21 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
   </div>
 
   <div class="FAQ">
+    <button class="button_faq">How does our algorithm determine what charity to recommend?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>
+       When you (the user) set your preferences in our questionaire our algorithm assigns a value to each of your inputs. 
+       Then, these scores get matched to charities, that exactly match your preferences. Each item contributes to the "similarity score", 
+       i.e. how similar the charity is to your preference. In a second step, the algorithem determines, which charities are the next closest matches, 
+       using the assigned values as a basis for vector distance calculations. It then ranks the charities it found based on the similarity score and shows you the once most closely matchin all your criteria. 
+      </p>
+    </div>
+  </div>
+  
+  <div class="FAQ">
     <button class="button_faq">I found a bug, what should I do?
       <i class="fa-sharp fa-solid fa-chevron-down"></i>
     </button>
