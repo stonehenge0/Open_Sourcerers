@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ApplePy Questionnaire</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="static/Architect_stylesheet_W3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+
+
+    .help-title {
+        font-size: 28px;
+        font-weight: 700;
+        
+    }
+
+    .help-div {
+        max-width: 75%;
+        margin: auto;
+
+    }
+
+    .title_FAQ {
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+
+    .button_faq {
+      background-color: white;
+      color:  rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      font-size: 1.2rem;
+      width: 100%;
+      padding: 2rem 2.5rem;
+      border: none;
+      transition: 0.4s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      font-weight: bold;
+
+
+    }
+
+    .button_faq i {
+      font-weight: bold;
+    }
+
+    .active,
+    .button_faq:hover {
+      background-color: rgb(250, 250, 250);
+      
+    }
+
+    .help-div p {
+      color: rgb(0, 0, 0, 0.7);
+      font-size: 1.2rem;
+      line-height: 1.4;
+
+    }
+
+    .FAQ {
+      border: solid;
+      border-color: rgba(0, 0, 0, 0.2);
+      border-width: 1px;
+      width: 66%;
+      margin: 10px 0;
+
+    }
+
+    .FAQ.active {
+      border: none;
+    }
+
+    .pannel {
+      background-color: rgb(250, 250, 250);
+      padding: 2rem 2.5rem;
+      padding-top: 0;
+      overflow: hidden;
+      width: 100%;
+      display: none;
+
+    }
+
+
+    .w3-display-container .w3-content .w3-wide {
+        box-shadow: 10px 8px 8px rgb(12, 12, 12, 0.15);
+    }
+    
+</style>
+</head>
+
+<body>
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="index.html" class="w3-bar-item w3-button"><b>ApplePy</b> Charity Finder</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="index.html#example_charities" class="w3-bar-item w3-button">Example Charities</a>
+      <a href="index.html#about" class="w3-bar-item w3-button">About</a>
+      <a class="w3-bar-item w3-button" href="questionnaire.html">Questionnaire</a>
+      <a class="w3-bar-item w3-button">Help</a>
+    </div>
+  </div>
+</div>
+  
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <div class="image">
+      <img class="w3-image" src="static/hands.jpg" alt="hands reaching in the air" width="1500" height="800" title="Image by Tumisu: https://pixabay.com/illustrations/volunteer-hands-help-colors-2055010/">
+  </div>
+  <div class="w3-display-middle w3-margin-top w3-center">
+    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>ApplePy</b></span> <span class="w3-hide-small w3-text-dark-grey">Help</span></h1>
+  </div>
+</header>
+
+<div class="help-div">
+
+  <h1 class="title_FAQ">Frequently Asked Questions</h1>
+
+  <div class="FAQ">
+    <button class="button_faq">Where did you get your data?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>We gathered data from different charity evaluators. Check out <a href="index.html#vis_Sources"> Our Sources here</a>.
+      </p>
+    </div>
+  </div>
+
+  <div class="FAQ">
+    <button class="button_faq">What do you do with my answers to the questionnaire?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>We developed an algorithm that matches your answers with the charities in our database.</p>
+    </div>
+  </div>
+
+  <div class="FAQ">
+    <button class="button_faq">Why is my favourite charity not in your database?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>We gathered data from different charity evaluators. Check out <a href="index.html#vis_Sources"> Our Sources here</a> to see which exactly. The charity evaluators probably either did not evaluate your favourite charity or it did not provide enough information about your favourite charity so that our algorithm can not match it properly.
+      </p>
+    </div>
+  </div>
+
+  <div class="FAQ">
+    <button class="button_faq">Why is the country I want not selectable in the questionnaire?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>
+        If your country is not selectable, that means we do not have a charity in our database that operates in that region. You can consider 
+          either not setting a preference for a country or seeing if you can find a charity that works on the continent you want it to.
+      </p>
+    </div>
+  </div>
+
+  <div class="FAQ">
+    <button class="button_faq">Why is the topic I want not selectable in the questionnaire?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>If your favourite topic is not selectable, that means we do not have a charity in our database that works on that issue.</p>
+    </div>
+  </div>
+
+  <div class="FAQ">
+    <button class="button_faq">What is the x-crisis filter?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>Charities that work on preventing existential crises for humanity (f.e. climate change, nuclear war) are x-crisis-charities and will be shown if you select "yes".</p>
+    </div>
+  </div>
+
+  <div class="FAQ">
+    <button class="button_faq">What does cost-efficiency mean?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>
+        Cost-efficiency is a way to measure how much good a charity does for a set amount of money. This is important because the amount of good
+          charities can do with a given amount of money can be hugely different. Cost-efficiency can take into account the spendings on administrative work,
+          how much room for funding a charity has and much more. If you want to read more about cost-efficiency, you can have a look at how one of our sources, 
+          charity evaluator GiveWell, handles <a target="_blank" rel="noopener noreferrer" href="https://www.givewell.org/how-we-work/our-criteria/cost-effectiveness">cost-efficiency</a>.
+      </p>
+    </div>
+  </div>
+
+  <div class="FAQ">
+    <button class="button_faq">I found a bug, what should I do?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>
+        Please report it to us. You can write to one of the members directly via the <a href="index.html#about">About</a> section. Please give as much context 
+          to your problem as possible, including your operating system, when it happened and as much info on the bug itself as you can.
+      </p>
+    </div>
+  </div>
+
+  <div class="FAQ">
+    <button class="button_faq">Can I see your code? How did you design the algorithm?
+      <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="pannel">
+      <p>
+        Currently: No. After the 24th of February however, we will provide a link to our GitHub repository with everything on it. 
+          This is due to our project requirements, but if until then you have any questions about the project code, feel free to write us an email. 
+          Please write to one of the members directly. 
+      </p>
+    </div>
+  </div>
+
+  
+</div>
+
+<script>
+
+  var variable = document.getElementsByClassName("button_faq");
+  var i;
+  for(i = 0; i < variable.length ; i++){
+    variable[i].addEventListener("click",  function
+    (){
+      this.classList.toggle("active");
+      this.parentElement.classList.toggle("active");
+
+      var pannel = this.nextElementSibling;
+
+      if(pannel.style.display ==="block"){
+        pannel.style.display = "none";
+
+      }else{
+        pannel.style.display = "block";
+      }
+    });
+  }
+
+
+</script>
+
+<!-- Image of location/map -->
+<div class="w3-container">
+  <img src="static/people_world.jpg" class="w3-image" style="width:100%" title="Image by Freepik: https://www.freepik.com/free-vector/character-illustration-diverse-people-world_3585388.htm#query=people%20around%20the%20world&position=5&from_view=search&track=ais&uuid=1be823e1-28b7-4059-842d-dd76c3b4d1b9">
+
+</div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+</body>
+</html>
