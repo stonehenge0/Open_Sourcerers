@@ -19,8 +19,7 @@ The ApplePy Charity pickers helps you find a charity to donate to. Over our webs
 
 ## Motivation
 The motivation behind this project was to combine multiple sources and extend their original functionalities to have a database of searchable, topically diverse, and cost-effective charities.
-
-Our sources consist of four charity evaluators focusing on animal charities, charities with high cost-efficiency, longterm impact charities or with a more general approach. Since we sources our charities fom charity evaluators that have conducted in-depth research on their charities we ensure high quality recommendations. We also give the user the option to work with cost-efficiency scores, that measure how much positive impact a charity can have with a given sum of money. This too is information that was usually not directly available or not provided to begin with at all, which was one main motivation behind the project.    
+Our sources consist of charity evaluators focusing on animal charities, charities with high cost-efficiency, longterm impact charities and a more broad evaluator. Since we sources our charities fom charity evaluators that have conducted in-depth research on their charities we ensure high quality recommendations. We also give the user the option to work with cost-efficiency scores, that measure how much positive impact a charity can have with a given sum of money. This too is information that was usually not directly available or not provided to begin with at all.    
 
 ## Features
 - A database consisting of four different evaluators each focusing on different aspects of charitable giving. Their data has been extended to include links to the charities, geographic information, in-depth cost-effectiveness analyses and more. 
@@ -51,12 +50,12 @@ if r:
 > Most of the code/functions here were shortened for the purpose of readability, you can find the full functions in the respective folders.
 
 
-After extracting the data, we see what the data is missing to fit in our schema: In this case ACE did not specify the continents that a charity was working on. Additionally, their effectiveness scores and categorization needed to be mapped onto ours to ensure consistency within our database to make it searchable. 
+After extracting the data, we see what the data is missing to fit in our scheme: In this case ACE did not specify the continents that a charity was working on. Additionally, their effectiveness scores and categorization needed to be mapped onto ours to ensure consistency within our database to make it searchable. 
 
 ```sh
 def map_to_categories(initial_categories):
-    """Function takes the initial categories (list) and maps them onto broader categories, returns string
-    returns category, if charity matches only one, then prioritizes from most to least specific
+    """Function takes the initial categories as a list and maps them onto broader categories. Returns a string.
+    Returns the category if charity matches only one. Otherwise returns most specific category in the list. 
     """
     categories = set()
     for lable in initial_categories:
@@ -68,13 +67,98 @@ def map_to_categories(initial_categories):
         return "nutrition and industrial livestock alternatives"
 
 ```
-**insert STATISTICAL ANALYSIS (Sina) here**
+**STATISTICAL ANALYSIS**
+
+How does our algorithm determine what charity to recommend?
+
+All features were categorized using their corresponding dictionary that assigns each feature an interpretable category level. For instance, in the topic feature, we have main topics and sub-topics which are part of their related main topic. here, we assign each main topic a numeric level and assign the sub-topics of the main topic a numeric level that increases for each sun topic by 1 level. Then, we reached the last sub-topic of the main topic, a numerical level + 5 was assigned to the next main topic and this process went on until reaching the last sub-category or main category.
+```sh
+categ_category = []
+for i in d['category']:
+  categ_category.append([category_levels[x] for x in i])
+```
+
+Topic | levels |
+ ---- | --- |
+infrastructure | 1 | 
+rural areas	 | 6 |
+healthcare and prevention | 11 |
+maternal and neonatal health | 12 |	
+vaccinations | 13 |
+Malaria | 14 |
+HIV/AIDS | 15 |	
+orthopedic treatment | 16 |
+children, youth and family | 21 |
+
+
+
+When you (the user) set your preferences in our questionnaire and select how different features are important for him/her, our algorithm assigns a value to each of your inputs, as shown for the 'continent' category. 
+```sh
+temp = []
+for i in user_continent:
+    temp.append(int(continent_levels.loc[continent_levels['continent'] == i,:]['levels']))
+user_continent = temp
+temp = []
+```
+
+Then, these scores get matched to charities, that exactly match your preferences. Each item contributes to the "similarity score", i.e. how similar the charity is to your preference. In a second step, the algorithem determines, which charities are the next closest matches, using the assigned values as a basis for vector distance calculations. It then ranks the charities it found based on the similarity score and shows you the one that most closely matches all your criteria.
+in the below code example, the algorithm tries to give any match 5 scores. moreover, the algorithm gives between 1 to 3 scores to close matches for the topic category. here, the column and wanted arguments are the feature and user input, respectively. moreover, the feature argument is only set to True for topics and efficiency features because their categorization method is more meaningful than other feature categorization methods.
+```sh
+  def iterate_1(amount, vec):
+    dists = [((amount-x)**2)**0.5 for x in vec if ((amount-x)**2)**0.5 <= 3]
+    try:
+      return(min(dists))
+    except Exception:
+      return(0)
+  def calculate_over_all(column, wanted, feature = False):
+    scores = []
+    k = 0
+    try:
+      desired_vector = ast.literal_eval(column)
+    except Exception:
+      desired_vector = column
+
+    for i in wanted:
+      if i in desired_vector:
+        k = k + 10
+      elif i not in desired_vector and feature:
+        k = k + iterate_1(i,desired_vector)
+    return(k)
+  total_scores = []
+  for index, row in f.iterrows():
+    v_1 = calculate_over_all(row['categ_continent'], user_continent)
+
+  #print(row['efficiency'])
+    v_2 = calculate_over_all([row['efficiency']], user_eff, True)
+  #print(row['country'])
+    v_3 = calculate_over_all(row['categ_country'], user_country)
+    v_4 = calculate_over_all(row['categ_category'], user_category, True)
+  #print(row['categ_x'])
+    v_5 = calculate_over_all([row['categ_x']], user_x, 1)
+    total_scores.append((v_1+v_2+v_3+v_4+v_5))
+  ##sort the results based on their similarity score
+  emp_dic = {}
+  k = 0
+  for i in total_scores:
+    emp_dic[k] = i
+    k = k + 1
+  sorted_dic = dict(sorted(emp_dic.items(), key=lambda x:x[1] , reverse= True))
+
+```
+
 
 We also create visualizations about our database and about the results of the user preferences and display them on the website. 
+The code example below tries to depict a pie chart of similarity scores for top-found charities.
+```sh
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+ax.pie(counts, labels=names, autopct='%1.1f%%')
+```
 
 
 
-## GitHub pages/ Website
+## GitHub pages
 [![pages-build-deployment](https://github.com/stonehenge0/Open_Sourcerers/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/stonehenge0/Open_Sourcerers/actions/workflows/pages/pages-build-deployment)
 
 The website is generated from the content in the `docs/` folder and reachable under the url: [https://stonehenge0.github.io/Open_Sourcerers/](https://stonehenge0.github.io/Open_Sourcerers/). 
@@ -85,6 +169,10 @@ You can see the current build status, as well as previous builds in the `Actions
 
 You can change the setup so that the website is generated from the root of the repository instead in `settings` > `pages`. An `index.html` file needs to be present in the root directory for the site to be displayed correctly. 
 
+## Website with Python functionality
+We are running our website on localhost.
+I you want to host our website and have the Questionnaire-functions online, you need to create a WSGI-server. Please refer to the Flask Documentation "Deploying to production" for further information: https://flask.palletsprojects.com/en/2.3.x/deploying/
+Please note that due to the size of the modules in our requirements.txt a free pythonanywhere-server is too small.
 
 ## Installation
 See `requirements.txt` for a full list of requirements.
@@ -96,17 +184,77 @@ python3 -m venv <name_of_venv>
 source <name_of_venv>/bin/activate
 pip install -r requirements.txt
 ```
+If you want to host our website and have the Questionnaire-functions online, you need to create a WSGI-server. Please refer to the Flask Documentation "Deploying to production" for further information: https://flask.palletsprojects.com/en/2.3.x/deploying/
+Please note that due to the size of the modules in our requirements.txt a free pythonanywhere-server is too small.
 
-
+If your server is set up, execute "app.py" and open your url. You should now have full functionality.
 
 
 ## How to use and extend the project? (maybe)
-Include a step-by-step guide that enables others to use and extend your code for their projects. Whether this section is required and whether it should be part of the `README.md` or a separate file depends on your project. If the **very short** `Code Examples` from above comprehensively cover (despite being concise!) all the major functionality of your project already, this section can be omitted. **If you think that users/developers will need more information than the brief code examples above to fully understand your code, this section is mandatory.** If your project requires significant information on code reuse, place the information into a new `.md` file.
+The different .py skripts in the 'data' folder all work together to collect and clean the data from the four different charity evaluators we used. It also includs excel spreadsheets of our final version of the collected data (final_XX.xlsx), that can easily be downloaded to use the statistical skripts on the data. To recreate the sheets the user would have to run the different skripts for each Website in order (e.g. XX_get_data.py, XX_get_more_data.py, cleanup_XX.py). One way to extend the project would be to gather more data on charities, for example from other charity evaluators. The data used for the statistical analysis is formatted to an excel table with headings "name", "category", "x-crisis", "country", "continent", "efficiency", "evaluator" and "website" and modify the statistical analysis code to include the new data. 
 
-## Results
-If you performed evaluations as part of your project, include your preliminary results that you also show in your final project presentation, e.g., precision, recall, F1 measure and/or figures highlighting what your project does. If applicable, briefly describe the dataset your created or used first before presenting the evaluated use cases and the results.
+The website runs via "app.py". As Flask handles the communication between backend and frontend an WSGI-server is required, if you want to access the website via the internet. See above for more details on installation.
 
-If you are about to complete your thesis, include the most important findings (precision/recall/F1 measure) and refer to the corresponding pages in your thesis document.
+If you want to add further html-pages, remember to create a new route in app.py and reference the new page on existing html-pages (via single button reference like our submit-questionnaire button or via the menu on all pages). You could also use our website with a different dataset. The safest way to do this is to write a python functoin that returns the data you would like to have displayed as a dict. the dict-structure we use is this:
+
+result = {
+    result1 : {
+    "name":value,
+    "category_g":value,
+    "category_s":value,
+    "xcrisis":"yes" OR "no",
+    "country":value,
+    "continent":value,
+    "efficiency":value,
+    "evaluator":value,
+    "link_website":value,
+    "link_cost":value
+    },
+    result2 : {
+    "name":value,
+    "category_g":value,
+    "category_s":value,
+    "xcrisis":"yes" OR "no",
+    "country":value,
+    "continent":value,
+    "efficiency":value,
+    "evaluator":value,
+    "link_website":value,
+    "link_cost":value
+    },
+    result3 : {
+    "name":value,
+    "category_g":value,
+    "category_s":value,
+    "xcrisis":"yes" OR "no",
+    "country":value,
+    "continent":value,
+    "efficiency":value,
+    "evaluator":value,
+    "link_website":value,
+    "link_cost":value
+    }
+}
+
+Then update the @app.route('/submit_questionnaire') part in app.py to call your own function instead of doing_search.main(). If you use different keys in your dictionary or a different amount of results being displayed, remember to edit the result_to_html-function in the app.py-file.
+
+--- explain in more detail?
+
+## Group Details
+
+Group Name: ApplyPY <br>
+Group Leader: Emma Stein <br>
+Group Members: Emma Stein, Lena-Sinwo Ngassa, Paula Kottwitz, Sina Garazhian <br>
+Tutor: Lars Kaesberg <br>
+<br>
+We developed the idea of the project and set up the timeline together. For detailed information on who worked on which parts of the project refer to `contributions.md`.
+
+## Data Sources
+Charity evaluation data was collected from
+* [GiveWell](https://www.givewell.org/)
+* [Giving What We Can](https://www.givingwhatwecan.org/)
+* [Deutsches Institut für soziale Fragen](https://www.dzi.de/)
+* [Animal Charity Evaluators](https://animalcharityevaluators.org/)
 
 ## License
 Include the project's license. Usually, we suggest MIT or Apache. Ask your supervisor. For example:
