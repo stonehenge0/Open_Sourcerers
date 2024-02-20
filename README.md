@@ -79,6 +79,7 @@ for i in d['category']:
 ```
 
 Topic | levels |
+ ---- | --- |
 infrastructure | 1 | 
 rural areas	 | 6 |
 healthcare and preventioni | 11 |
