@@ -71,7 +71,7 @@ def map_to_categories(initial_categories):
 
 How does our algorithm determine what charity to recommend?
 
-All features were categorized using their corresponding dictionary that assigns each feature an interpretable category level. For instance, in topic feature we have main topics and sub topics which are part of the their related main topic. here, we assign each main topic a numeric level and assign the sub topics of the main topic a numeric level that inreases for each sun topic by step of 1. then, we reached the last sub topic of the main topic, a numerical level + 5 were assigned to the next main topic and this process went on until reaching the last sub category or main category.
+All features were categorized using their corresponding dictionary that assigns each feature an interpretable category level. For instance, in the topic feature, we have main topics and sub-topics which are part of their related main topic. here, we assign each main topic a numeric level and assign the sub-topics of the main topic a numeric level that increases for each sun topic by 1 level. Then, we reached the last sub-topic of the main topic, a numerical level + 5 was assigned to the next main topic and this process went on until reaching the last sub-category or main category.
 ```sh
 categ_category = []
 for i in d['category']:
@@ -92,7 +92,7 @@ children, youth and family | 21 |
 
 
 
-When you (the user) set your preferences in our questionaire our algorithm assigns a value to each of your inputs, as shown for the 'continent' category. 
+When you (the user) set your preferences in our questionnaire and select how different features are important for him/her, our algorithm assigns a value to each of your inputs, as shown for the 'continent' category. 
 ```sh
 temp = []
 for i in user_continent:
