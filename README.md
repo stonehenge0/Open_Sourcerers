@@ -100,12 +100,13 @@ pip install -r requirements.txt
 
 
 ## How to use and extend the project? (maybe)
+The different .py skripts in the 'data' folder all work together to collect and clean the data from the four different charity evaluators we used. It also includs excel spreadsheets of our final version of the collected data (final_XX.xlsx), that can easily be downloaded to use the statistical skripts on the data. To recreate the sheets the user would have to run the different skripts for each Website in order (e.g. XX_get_data.py, XX_get_more_data.py, cleanup_XX.py). One way to extend the project would be to gather more data on charities, for example from other charity evaluators. The data used for the statistical analysis is formatted to an excel table with headings "name", "category", "x-crisis", "country", "continent", "efficiency", "evaluator" and "website" and modify the statistical analysis code to include the new data. 
+
+The code for the website is contained in the docs folder, however it can executed on local host if it is downloaded to the user's machine. 
+
+--- explain in more detail?
+
 Include a step-by-step guide that enables others to use and extend your code for their projects. Whether this section is required and whether it should be part of the `README.md` or a separate file depends on your project. If the **very short** `Code Examples` from above comprehensively cover (despite being concise!) all the major functionality of your project already, this section can be omitted. **If you think that users/developers will need more information than the brief code examples above to fully understand your code, this section is mandatory.** If your project requires significant information on code reuse, place the information into a new `.md` file.
-
-## Results
-If you performed evaluations as part of your project, include your preliminary results that you also show in your final project presentation, e.g., precision, recall, F1 measure and/or figures highlighting what your project does. If applicable, briefly describe the dataset your created or used first before presenting the evaluated use cases and the results.
-
-If you are about to complete your thesis, include the most important findings (precision/recall/F1 measure) and refer to the corresponding pages in your thesis document.
 
 ## Group Details
 
