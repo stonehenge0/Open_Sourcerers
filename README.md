@@ -78,9 +78,27 @@ for i in d['category']:
   categ_category.append([category_levels[x] for x in i])
 ```
 
-Attempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11
---- | --- | --- | --- |--- |--- |--- |--- |--- |--- |--- |---
-Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269
+Topic | levels |
+--- | --- |
+infrastructure | 1 | 
+--- | --- |
+rural areas	 | 6 |
+--- | --- |
+healthcare and preventioni | 11 |
+--- | --- |
+maternal and neonatal health | 12 |	
+--- | --- |
+vaccinations | 13 |
+--- | --- |
+Malaria | 14 |
+--- | --- |
+HIV/AIDS | 15 |	
+--- | --- |
+orthopedic treatment | 16 |
+--- | --- |
+children, youth and family | 21 |
+
+
 
 When you (the user) set your preferences in our questionaire our algorithm assigns a value to each of your inputs, as shown for the 'continent' category. 
 ```sh
