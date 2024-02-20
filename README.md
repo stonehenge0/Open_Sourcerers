@@ -68,6 +68,19 @@ def map_to_categories(initial_categories):
 
 ```
 **insert STATISTICAL ANALYSIS (Sina) here**
+How does our algorithm determine what charity to recommend?
+
+When you (the user) set your preferences in our questionaire our algorithm assigns a value to each of your inputs, as shown for the 'continent' category. 
+```sh
+temp = []
+for i in user_continent:
+    temp.append(int(continent_levels.loc[continent_levels['continent'] == i,:]['levels']))
+user_continent = temp
+temp = []
+```
+
+Then, these scores get matched to charities, that exactly match your preferences. Each item contributes to the "similarity score", i.e. how similar the charity is to your preference. In a second step, the algorithem determines, which charities are the next closest matches, using the assigned values as a basis for vector distance calculations. It then ranks the charities it found based on the similarity score and shows you the once most closely matchin all your criteria. 
+
 
 We also create visualizations about our database and about the results of the user preferences and display them on the website. 
 
