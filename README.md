@@ -148,6 +148,13 @@ in the below code example, the algorithm tries to give any match 5 scores. moreo
 
 
 We also create visualizations about our database and about the results of the user preferences and display them on the website. 
+The code example below tries to depict a pie chart of similarity scores for top-found charities.
+```sh
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+ax.pie(counts, labels=names, autopct='%1.1f%%')
+```
 
 
 
