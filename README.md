@@ -110,7 +110,48 @@ The different .py skripts in the 'data' folder all work together to collect and 
 
 The website runs via "app.py". As Flask handles the communication between backend and frontend an WSGI-server is required, if you want to access the website via the internet. See above for more details on installation.
 
-If you want to add further html-pages, remember to create a new route in app.py and reference the new page on existing html-pages (via single button reference like our submit-questionnaire button or via the menu on all pages). You could also use our website with a different dataset. For this you have to edit the contents of the html-pages and update the @app.route('/submit_questionnaire') part in app.py to call your own functions OR update doing_search.py to load your spreadsheet as dataframe.
+If you want to add further html-pages, remember to create a new route in app.py and reference the new page on existing html-pages (via single button reference like our submit-questionnaire button or via the menu on all pages). You could also use our website with a different dataset. The safest way to do this is to write a python functoin that returns the data you would like to have displayed as a dict. the dict-structure we use is this:
+
+result = {
+    result1 : {
+    "name":value,
+    "category_g":value,
+    "category_s":value,
+    "xcrisis":"yes" OR "no",
+    "country":value,
+    "continent":value,
+    "efficiency":value,
+    "evaluator":value,
+    "link_website":value,
+    "link_cost":value
+    },
+    result2 : {
+    "name":value,
+    "category_g":value,
+    "category_s":value,
+    "xcrisis":"yes" OR "no",
+    "country":value,
+    "continent":value,
+    "efficiency":value,
+    "evaluator":value,
+    "link_website":value,
+    "link_cost":value
+    },
+    result3 : {
+    "name":value,
+    "category_g":value,
+    "category_s":value,
+    "xcrisis":"yes" OR "no",
+    "country":value,
+    "continent":value,
+    "efficiency":value,
+    "evaluator":value,
+    "link_website":value,
+    "link_cost":value
+    }
+}
+
+Then update the @app.route('/submit_questionnaire') part in app.py to call your own function instead of doing_search.main(). If you use different keys in your dictionary or a different amount of results being displayed, remember to edit the result_to_html-function in the app.py-file.
 
 --- explain in more detail?
 
