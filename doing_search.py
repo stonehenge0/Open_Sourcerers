@@ -16,7 +16,7 @@ from io import BytesIO
 import base64
 import matplotlib.pyplot as plt
 def main(user_continent, user_country, user_category
-         , user_x, user_eff
+         , user_x, user_eff, weights
          , directory_of_dataset = os.path.join(os.getcwd(),"data", "final_cleaned_meaningful_all.csv")):
   import numpy as np
   import pandas as pd
@@ -86,7 +86,7 @@ def main(user_continent, user_country, user_category
     v_4 = calculate_over_all(row['categ_category'], user_category, True)
   #print(row['categ_x'])
     v_5 = calculate_over_all([row['categ_x']], user_x, 1)
-    total_scores.append((0.1 * v_1+ 0.1 * v_2+0.1 * v_3+0.1 * v_4+0.6 * v_5))
+    total_scores.append((weights[1]*v_1 + weights[3]*v_2 + weights[0]*v_3 + weights[2]*v_4 + weights[4]*v_5))
   ##sort the results based on their similarity score
   emp_dic = {}
   k = 0
@@ -130,7 +130,7 @@ def main(user_continent, user_country, user_category
     v_4 = calculate_over_all(row['categ_category'], user_category, True)
   #print(row['categ_x'])
     v_5 = calculate_over_all([row['categ_x']], user_x)
-    total_scores_1.append((0.5 * v_1+ 0.8 * v_2+0.5 * v_3+0.6 * v_4+0.9 * v_5))
+    total_scores_1.append((weights[1] * v_1 + weights[3]*v_2 + weights[0]*v_3 + weights[2]*v_4 + weights[4]*v_5))
   emp_dic_1 = {}
   k = 0
   for i in total_scores_1:
