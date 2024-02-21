@@ -15,11 +15,16 @@ https://docs.google.com/presentation/d/1W9WDpjblKqI7NbVhbs1zIHmNB68DqaqjX7LX9M4Y
 
 ---
 ## Charity Picker
-The ApplePy Charity pickers helps you find a charity to donate to. Over our website, the user can enter their preferences and we will suggest charities from our database that most closely match what they are looking for. 
+The ApplePy Charity pickers helps you find a charity to donate to. Over our website, the user can enter their preferences and we will suggest charities from our database that most closely match what they are looking for and give out additional information on the charity's cost-effectiveness and more. 
 
 ## Motivation
-The motivation behind this project was to combine multiple sources and extend their original functionalities to have a database of searchable, topically diverse, and cost-effective charities.
-Our sources consist of charity evaluators focusing on animal charities, charities with high cost-efficiency, longterm impact charities and a more broad evaluator. Since we sources our charities fom charity evaluators that have conducted in-depth research on their charities we ensure high quality recommendations. We also give the user the option to work with cost-efficiency scores, that measure how much positive impact a charity can have with a given sum of money. This too is information that was usually not directly available or not provided to begin with at all.    
+The motivation behind this project was to combine multiple charity sources and extend their original functionalities to have a database of searchable, topically diverse, and cost-effective charities.
+
+- *Searchable*: Charity evaluators often recommended charities, but did not make their data available in a structured and searchable manner. We extracted their data and processed it in a way that would allow users to navigate these charities easier and find what they were looking for. 
+- *Topically diverse*: Our sources consist of charity evaluators focusing on animal charities, charities with high cost-efficiency, longterm impact charities and a more broad evaluator. By bringing those different approaches together and fitting them into one database, we offer a wide range of charities to explore.
+- *High quality charities and detailed cost-efficiency information*: By sourcing only from known charity evaluators we ensure that the charities we recommend are high-quality. We also sourced detailed cost-effectiveness analysis of each charity for the user to inspect themselves. 
+
+Another major point of consideration was to make picking a high-quality charity as easy as possible. One major obstacle to effective giving is the effort required to look through different evaluators and find the right charity to donate to. Our website provides easy access to these functionalities and does not require users to have coding knowledge in order to make it more accessible. 
 
 ## Features
 - A database consisting of four different evaluators each focusing on different aspects of charitable giving. Their data has been extended to include links to the charities, geographic information, in-depth cost-effectiveness analyses and more. 
@@ -34,9 +39,7 @@ We first read in the data that we have from each of our sources, in this case us
 > Note: the process of extracting, processing and scraping data varies strongly between our sources. In favour of simplicity, the data collection process will be shown at the example of ACE (Animal Charity Evaluator) here.
 
 ```sh
-try:
-    r = s.get(url=URL_animals, headers=headers)
-if r:
+    # We used BeautifulSoup to webscrape data from the individual ACE charity websites. 
     soup = BeautifulSoup(r.content, "html5lib")
     table = soup.find('div', attrs={"id": "grid"})
     #  for each charity extract relevant data
@@ -46,6 +49,7 @@ if r:
         charity["name"] = row.h2.text
         charity["eval_link"] = row.a["href"]
         # ...
+
 ```
 > Most of the code/functions here were shortened for the purpose of readability, you can find the full functions in the respective folders.
 
@@ -53,10 +57,7 @@ if r:
 After extracting the data, we see what the data is missing to fit in our scheme: In this case ACE did not specify the continents that a charity was working on. Additionally, their effectiveness scores and categorization needed to be mapped onto ours to ensure consistency within our database to make it searchable. 
 
 ```sh
-def map_to_categories(initial_categories):
-    """Function takes the initial categories as a list and maps them onto broader categories. Returns a string.
-    Returns the category if charity matches only one. Otherwise returns most specific category in the list. 
-    """
+
     categories = set()
     for lable in initial_categories:
         if lable in topics_dict:
@@ -196,7 +197,7 @@ The different .py skripts in the 'data' folder all work together to collect and 
 The website runs via "app.py". As Flask handles the communication between backend and frontend an WSGI-server is required, if you want to access the website via the internet. See above for more details on installation.
 
 If you want to add further html-pages, remember to create a new route in app.py and reference the new page on existing html-pages (via single button reference like our submit-questionnaire button or via the menu on all pages). You could also use our website with a different dataset. The safest way to do this is to write a python functoin that returns the data you would like to have displayed as a dict. the dict-structure we use is this:
-
+```sh
 result = {
     result1 : {
     "name":value,
@@ -235,10 +236,10 @@ result = {
     "link_cost":value
     }
 }
+```
 
 Then update the @app.route('/submit_questionnaire') part in app.py to call your own function instead of doing_search.main(). If you use different keys in your dictionary or a different amount of results being displayed, remember to edit the result_to_html-function in the app.py-file.
 
---- explain in more detail?
 
 ## Group Details
 
@@ -257,11 +258,27 @@ Charity evaluation data was collected from
 * [Animal Charity Evaluators](https://animalcharityevaluators.org/)
 
 ## License
-Include the project's license. Usually, we suggest MIT or Apache. Ask your supervisor. For example:
+This project is covered through a MIT License.
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use news-please except in compliance with the License. A copy of the License is included in the project, see the file [LICENSE](LICENSE).
+Copyright (c) 2024 Emma Victoria Stein
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## License of this readme-template (remove this once you replaced this readme-template with your own content)
-This file itself is partially based on [this file](https://gist.github.com/sujinleeme/ec1f50bb0b6081a0adcf9dd84f4e6271). 
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+> See [LICENSE](LICENSE.txt).
+
