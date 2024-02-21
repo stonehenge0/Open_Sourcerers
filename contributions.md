@@ -1,4 +1,4 @@
-An overview of who did what during the project.
+An overview of who has contributed what parts during the project. 
 
 **Emma:**
 - `data/GiveWell_webscraped_extracted.py`  (previously called "get_grant_data") 
@@ -7,20 +7,28 @@ An overview of who did what during the project.
 - `data/GiveWell_with_final_ce_links.xlsx`
 - `data/GiveWell_almost_finished.xlsx`
 - `data/final_GiveWell_and_GWWC.xlsx`
-- `docs/index.html` sections: Example charities, About, Visualizations generated (Paula put them online), general layout and pictures.
-- `docs/help.html` general layout and wrote half of the questions.  
+- `docs/index.html` General layout, example charities, about section, visualizations.
+- `docs/help.html` Wrote half of the questions.  
 - `docs/charity_categories.py`
 - `docs/distribution_charity_sources.py`
+- `docs/static/Figure_1_cropped.png` Visualization: charity sources
+- `docs/static/Figure_2_cropped.png` Visualization: circular barplot
+- `LICENSE.txt`
 
+  
 - Hosting of the website (without Python functionality)
-- General Layout of the Website
-- `README.md` sections: Charity Picker, Motivation, Features, Code Examples, GitHub Pages/Website, Installation
-- Virtual environment (`requirements.txt`)
+- General Design & Layout of the Frontend (except design of the questionnaire and results page)
+- `README.md` sections: Charity Picker, Motivation, Features, Code Examples (*except statistical analysis*) , GitHub Pages/Website, Installation, License
+- Virtual environment & `requirements.txt`
  
 - research charity evaluators for sources
 - Cost-effectiveness Guidelines
 - first draft of categories with Paula 
 - Adding & researching existential risk (X-risk) charities
+  
+
+
+
 
  --- 
 
@@ -55,5 +63,11 @@ An overview of who did what during the project.
 - `data/dzi_01.csv`
 - `data/dzi_more_info.csv`
 - `data/final_DZI.xlsx`
+
+---
+**Florian**
+> Florian has left the group, because of issues with the accredetation of the module.
+
+Before he left, he had worked on Visualizations and had uploaded the pictures and texts for the About section in `docs/index.html`and worked on the design of the questionnaire. 
  
  
